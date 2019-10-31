@@ -6,8 +6,12 @@
  * level2State etc will work fine
  */
 var levelState = {
+    preload: function() {
+      game.add.image('green', 'assets/green.png');
+    }
+
    create: function() {
-     game.add.image('green', 'assets/green.png');
+     game.add.sprite(0, 0, 'green');
       // create the level
    },
 

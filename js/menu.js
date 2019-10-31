@@ -5,6 +5,7 @@
 var menuState = {
    create: function() {
       // create the scene
+      game.state.start('level');
    },
 
    // this is how you write a function
