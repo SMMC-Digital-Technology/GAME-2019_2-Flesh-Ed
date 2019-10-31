@@ -7,6 +7,7 @@
  */
 var levelState = {
    create: function() {
+     game.add.image('green', 'assets/green.png');
       // create the level
    },
 
