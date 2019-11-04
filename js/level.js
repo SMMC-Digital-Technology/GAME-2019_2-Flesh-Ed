@@ -9,6 +9,7 @@ var levelState = {
 
    create: function() {
      game.add.sprite(0, 0, 'green');
+     game.add.sprite(64, 64, 'man');
       // create the level
    },
 
