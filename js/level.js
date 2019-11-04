@@ -6,6 +6,7 @@
  * level2State etc will work fine
  */
 var levelState = {
+
     preload: function() {
       game.load.image('green', 'assets/green.png');
       game.load.sprite('man', 'assets/man.png');
@@ -25,8 +26,8 @@ var levelState = {
    // see that variables go in the brackets still
    // to use this function in collision detection, write this.exampleFunction
    // to call it manually, write this.exampleFunction(1, 2)
-   exampleFunction: function(something, somethingElse) {
 
    }
+ }
 
 };
