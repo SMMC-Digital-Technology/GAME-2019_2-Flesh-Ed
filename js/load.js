@@ -7,6 +7,8 @@ var loadState = {
          font: '30px Courier',
          fill: '#ffffff'
       });
+      game.load.image('green', 'assets/green.png');
+      game.load.sprite('man', 'assets/man.png');
 
       // load all assets
    },

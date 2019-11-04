@@ -7,11 +7,6 @@
  */
 var levelState = {
 
-    preload: function() {
-      game.load.image('green', 'assets/green.png');
-      game.load.sprite('man', 'assets/man.png');
-    }
-
    create: function() {
      game.add.sprite(0, 0, 'green');
       // create the level
@@ -26,8 +21,4 @@ var levelState = {
    // see that variables go in the brackets still
    // to use this function in collision detection, write this.exampleFunction
    // to call it manually, write this.exampleFunction(1, 2)
-
-   }
- }
-
 };
