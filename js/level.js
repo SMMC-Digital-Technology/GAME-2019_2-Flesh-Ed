@@ -7,7 +7,8 @@
  */
 var levelState = {
     preload: function() {
-      game.add.image('green', 'assets/green.png');
+      game.load.image('green', 'assets/green.png');
+      game.load.sprite('man', 'assets/man.png');
     }
 
    create: function() {
