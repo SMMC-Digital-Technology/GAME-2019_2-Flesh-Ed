@@ -3,7 +3,7 @@
  */
 var loadState = {
    preload: function() {
-      loadingLabel = game.add.text(80, 150, 'loading... :)', {
+      loadingLabel = game.add.text(80, 150, 'loading...', {
          font: '30px Courier',
          fill: '#ffffff'
       });
@@ -15,6 +15,10 @@ var loadState = {
 
    create: function() {
       game.state.start('menu');
+      w = game.input.keyboard.addKey(Phaser.KeyCode.W);
+      s = game.input.keyboard.addKey(Phaser.KeyCode.S);
+      space = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
+      cursors = game.input.keyboard.createCursorKeys();
    }
 
 };
