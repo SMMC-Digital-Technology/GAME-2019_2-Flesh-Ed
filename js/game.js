@@ -1,4 +1,5 @@
 var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'game-world');
+
 var ed;
 var zteacher;
 var zstudent;
