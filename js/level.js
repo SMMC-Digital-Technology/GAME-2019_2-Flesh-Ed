@@ -9,12 +9,30 @@ var levelState = {
 
    create: function() {
      game.add.sprite(0, 0, 'green');
-     game.add.sprite(64, 64, 'man');
+     game.add.sprite(64, 64, 'ed');
+     cursors = game.input.keyboard.createCursorKeys();
+
+     game.physics.arcade.enable(ed);
+     ed.enableBody = true;
       // create the level
    },
 
    update: function() {
+
       // do things on the game loop
+      if (cursors.left.isDown) {
+         //  Move to the left
+         ed.body.velocity.x = -150;
+         //ed.animations.play('left');
+      } else if (cursors.right.isDown) {
+         //  Move to the right
+         ed.body.velocity.x = 150;
+         //ed.animations.play('right');
+      } else {
+         //  Stand still
+        // ed.animations.stop();
+         //ed.frame = 4;
+      }
    },
 
    // this is how you write a function

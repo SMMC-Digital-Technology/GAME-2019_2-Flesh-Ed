@@ -8,7 +8,7 @@ var loadState = {
          fill: '#ffffff'
       });
       game.load.image('green', 'assets/green.png');
-      game.load.image('man', 'assets/download.png');
+      game.load.image('ed', 'assets/download.png');
 
       // load all assets
    },

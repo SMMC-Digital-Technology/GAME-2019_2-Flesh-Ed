@@ -1,4 +1,13 @@
 var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'game-world');
+var ed;
+var zteacher;
+var zstudent;
+var zscience;
+var zpe;
+var zlibrarian;
+var zjock;
+var zprincipal;
+var cursors;
 
 game.state.add('boot', bootState);
 game.state.add('load', loadState);
