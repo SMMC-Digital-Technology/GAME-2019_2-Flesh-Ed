@@ -12,8 +12,8 @@ var levelState = {
      game.add.sprite(64, 64, 'ed');
      cursors = game.input.keyboard.createCursorKeys();
 
-     game.physics.arcade.enable(ed);
-     ed.enableBody = true;
+     game.physics.arcade.enable('ed');
+     'ed'.enableBody = true;
       // create the level
    },
 
