@@ -13,8 +13,13 @@ var levelState = {
 
 
 
+<<<<<<< HEAD
      game.physics.arcade.enable(ed);
 
+=======
+     game.physics.arcade.enable('ed');
+     'ed'.enableBody = true;
+>>>>>>> cfa24d03d52c7809bd637545d1f702d5678ec49e
       // create the level
    },
 
