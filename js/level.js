@@ -11,15 +11,12 @@ var levelState = {
      game.add.sprite(0, 0, 'green');
      ed = game.add.sprite(64, 64, 'ed');
 
+     game.add.sprite(400,0, 'door');
 
 
-<<<<<<< HEAD
+
      game.physics.arcade.enable(ed);
 
-=======
-     game.physics.arcade.enable('ed');
-     'ed'.enableBody = true;
->>>>>>> cfa24d03d52c7809bd637545d1f702d5678ec49e
       // create the level
    },
 
@@ -49,7 +46,7 @@ var levelState = {
         }
         ed.body.collideWorldBounds = true;
       }
-
+      //game.physics.arcade.collide(ed, )
    };
 
    // this is how you write a function

@@ -9,14 +9,16 @@ var loadState = {
       });
       game.load.image('green', 'assets/green.png');
       game.load.image('ed', 'assets/download.png');
+      game.load.image('blue', 'assets/blue.png');
+      game.load.image('door', 'assets/dor.png');
 
       // load all assets
    },
 
    create: function() {
       game.state.start('menu');
-      w = game.input.keyboard.addKey(Phaser.KeyCode.W);
-      s = game.input.keyboard.addKey(Phaser.KeyCode.S);
+      //w = game.input.keyboard.addKey(Phaser.KeyCode.W);
+      //s = game.input.keyboard.addKey(Phaser.KeyCode.S);
       space = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
       cursors = game.input.keyboard.createCursorKeys();
    }
