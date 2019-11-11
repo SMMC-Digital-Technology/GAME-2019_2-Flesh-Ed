@@ -3,6 +3,6 @@ var level2State = {
 
   },
   update: function() {
-
+    console.log('123');
   }
 }

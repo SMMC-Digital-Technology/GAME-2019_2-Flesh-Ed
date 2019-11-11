@@ -45,8 +45,12 @@ var levelState = {
           ed.body.velocity.y = 0;
         }
         ed.body.collideWorldBounds = true;
+        {
+          game.physics.arcade.collide(ed,door)
+            game.state.start('level2');
+            console.log('142');
+        }
       }
-      //game.physics.arcade.collide(ed, )
    };
 
    // this is how you write a function
