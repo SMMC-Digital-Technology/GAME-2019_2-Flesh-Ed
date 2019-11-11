@@ -17,7 +17,7 @@ var levelState = {
   //  ed.anchor.setTo(0.5, 0.5);
 
      game.physics.arcade.enable(ed);
-     game.physics.arcade.enable(door);
+  //   game.physics.arcade.enable(door);
       // create the level
    },
 
