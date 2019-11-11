@@ -13,7 +13,8 @@ var levelState = {
 
      game.add.sprite(400,0, 'door');
 
-
+    door.anchor.setTo(0.5, 0.5);
+    ed.anchor.setTo(0.5, 0.5);
 
      game.physics.arcade.enable(ed);
 
