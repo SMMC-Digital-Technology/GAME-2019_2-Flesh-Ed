@@ -11,17 +11,15 @@ var levelState = {
      game.add.sprite(0, 0, 'green');
      ed = game.add.sprite(64, 64, 'ed');
 
-     game.add.sprite(400,0, 'door');
+     door = game.add.sprite(400, 100, 'door');
 
-<<<<<<< HEAD
-=======
-  //  door.anchor.setTo(0.5, 0.5);
-  //  ed.anchor.setTo(0.5, 0.5);
-
->>>>>>> 4b797e1f79f157c117d3a7ad3689b2575487df68
      game.physics.arcade.enable(ed);
-  //   game.physics.arcade.enable(door);
-      // create the level
+     game.physics.arcade.enable(door);
+     ed.body.collideWorldBounds = true;
+
+     door.body.immovable = true;
+
+      // create the lev
    },
 
    update: function() {
@@ -48,16 +46,10 @@ var levelState = {
         else {
           ed.body.velocity.y = 0;
         }
-        ed.body.collideWorldBounds = true;
-        {
-          game.physics.arcade.collide(ed,door)
-<<<<<<< HEAD
-            //game.state.start('level2');
-=======
-        //    game.state.start('level2');
->>>>>>> 4b797e1f79f157c117d3a7ad3689b2575487df68
-            console.log('142');
-        }
+
+          game.physics.arcade.collide(ed, door, () => {game.state.start('level2');});
+
+
       }
    };
 
