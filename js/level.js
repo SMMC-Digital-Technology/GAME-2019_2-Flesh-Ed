@@ -13,11 +13,11 @@ var levelState = {
 
      game.add.sprite(400,0, 'door');
 
-    door.anchor.setTo(0.5, 0.5);
-    ed.anchor.setTo(0.5, 0.5);
+  //  door.anchor.setTo(0.5, 0.5);
+  //  ed.anchor.setTo(0.5, 0.5);
 
      game.physics.arcade.enable(ed);
-
+     game.physics.arcade.enable(door);
       // create the level
    },
 
@@ -48,7 +48,7 @@ var levelState = {
         ed.body.collideWorldBounds = true;
         {
           game.physics.arcade.collide(ed,door)
-            game.state.start('level2');
+        //    game.state.start('level2');
             console.log('142');
         }
       }
