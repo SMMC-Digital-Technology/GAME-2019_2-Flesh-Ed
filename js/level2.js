@@ -1,9 +1,9 @@
 var level2State = {
   create: function() {
     game.add.sprite(0, 0, 'green');
-    ed = game.add.sprite(64, 64, 'ed');
+    ed = game.add.sprite(750, 300, 'ed');
 
-    door = game.add.sprite(40,0, 'door');
+    door = game.add.sprite(-20, 300, 'door');
 
     game.physics.arcade.enable(ed);
     game.physics.arcade.enable(door);
@@ -40,7 +40,7 @@ var level2State = {
        }
 
          game.physics.arcade.collide(ed, door, () => {console.log('142');});
-           
+
 
      }
   };

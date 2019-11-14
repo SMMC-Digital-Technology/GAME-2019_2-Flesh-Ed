@@ -11,7 +11,7 @@ var levelState = {
      game.add.sprite(0, 0, 'green');
      ed = game.add.sprite(64, 64, 'ed');
 
-     door = game.add.sprite(400, 100, 'door');
+     door = game.add.sprite(750, 300, 'door');
 
      game.physics.arcade.enable(ed);
      game.physics.arcade.enable(door);
