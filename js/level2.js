@@ -2,15 +2,15 @@ var level2State = {
   create: function() {
     game.add.sprite(0, 0, 'green');
     ed = game.add.sprite(750, 300, 'ed');
-
     door = game.add.sprite(-20, 300, 'door');
-
+    blue = game.add.sprite(64, 64, 'blue');
     game.physics.arcade.enable(ed);
     game.physics.arcade.enable(door);
+    game.physics.arcade.enable(blue);
     ed.body.collideWorldBounds = true;
 
     door.body.immovable = true;
-
+    blue.body.immovable = true;
      // create the lev
   },
 
@@ -42,5 +42,7 @@ var level2State = {
          game.physics.arcade.collide(ed, door, () => {console.log('142');});
 
 
+
+         game.physics.arcade.collide(ed, blue, () => {game.state.start('gameover');});
      }
   };

@@ -10,6 +10,7 @@ var zjock;
 var zprincipal;
 var cursors;
 var door;
+var blue;
 
 game.state.add('boot', bootState);
 game.state.add('load', loadState);
