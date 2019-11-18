@@ -7,17 +7,35 @@
  */
 var levelState = {
 
+  render: function() {
+    game.debug.body(ed);
+  },
+
    create: function() {
      game.add.sprite(0, 0, 'green');
-     ed = game.add.sprite(64, 64, 'ed');
-
+     ed = game.add.sprite(164, 164, 'ed');
      door = game.add.sprite(750, 300, 'door');
+     iwall = game.add.sprite(82, 82, 'iwall');
+     iwall2 = game.add.sprite(82, 518, 'iwall');
+     iwall3 = game.add.sprite(82, 82, 'iwall');
+     iwall4 = game.add.sprite(718, 82, 'iwall');
+
+     iwall.width = 636;
+     iwall2.width = 636;
+     iwall3.height = 436;
+     iwall4.height = 436;
 
      game.physics.arcade.enable(ed);
      game.physics.arcade.enable(door);
+     game.physics.arcade.enable(iwall);
+     game.physics.arcade.enable(iwall2);
+     game.physics.arcade.enable(iwall3);
+     game.physics.arcade.enable(iwall4);
+
      ed.body.collideWorldBounds = true;
 
      door.body.immovable = true;
+     iwall.body.immovable = true;
 
       // create the lev
    },
