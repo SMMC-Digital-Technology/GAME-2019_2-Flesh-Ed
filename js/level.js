@@ -7,14 +7,15 @@
  */
 var levelState = {
 
-  render: function() {
-    game.debug.body(ed);
-  },
+  //render: function() {
+  //  game.debug.body(ed);
+  //  game.debug.body(door);
+//  },
 
    create: function() {
      game.add.sprite(0, 0, 'green');
-     ed = game.add.sprite(164, 164, 'ed');
-     door = game.add.sprite(750, 300, 'door');
+     ed = game.add.sprite(650,300, 'ed');
+     door = game.add.sprite(717, 265, 'door');
      iwall = game.add.sprite(82, 82, 'iwall');
      iwall2 = game.add.sprite(82, 518, 'iwall');
      iwall3 = game.add.sprite(82, 82, 'iwall');
@@ -25,17 +26,28 @@ var levelState = {
      iwall3.height = 436;
      iwall4.height = 436;
 
-     game.physics.arcade.enable(ed);
-     game.physics.arcade.enable(door);
-     game.physics.arcade.enable(iwall);
-     game.physics.arcade.enable(iwall2);
-     game.physics.arcade.enable(iwall3);
-     game.physics.arcade.enable(iwall4);
+     //wall = game.add.group();
+     //wall.add(iwall);
+     //wall.add(iwall2);
+     //wall.add(iwall3);
+    // wall.add(iwall4);
+
+    game.physics.arcade.enable(ed);
+    game.physics.arcade.enable(door);
+    game.physics.arcade.enable(iwall);
+    game.physics.arcade.enable(iwall2);
+    game.physics.arcade.enable(iwall3);
+    game.physics.arcade.enable(iwall4);
 
      ed.body.collideWorldBounds = true;
 
+
      door.body.immovable = true;
      iwall.body.immovable = true;
+     iwall2.body.immovable = true;
+     iwall3.body.immovable = true;
+     iwall4.body.immovable = true;
+
 
       // create the lev
    },
@@ -43,7 +55,7 @@ var levelState = {
    update: function() {
 
       // do things on the game loop
-      if (cursors.left.isDown) {
+      if(cursors.left.isDown) {
          //  Move to the left
          ed.body.velocity.x = -150;
          //ed.animations.play('left');
@@ -67,7 +79,17 @@ var levelState = {
 
           game.physics.arcade.collide(ed, door, () => {game.state.start('level2');});
 
+        game.physics.arcade.collide(ed, iwall);
+        game.physics.arcade.collide(ed, iwall2);
+        game.physics.arcade.collide(ed, iwall3);
+        game.physics.arcade.collide(ed, iwall4);
 
+        iwall.alpha = 0
+        iwall2.alpha = 0
+        iwall3.alpha = 0
+        iwall4.alpha = 0
+
+        door.alpha = 0
       }
    };
 
