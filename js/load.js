@@ -12,6 +12,7 @@ var loadState = {
       game.load.image('blue', 'assets/blue.png');
       game.load.image('door', 'assets/dor.png');
       game.load.image('iwall', 'assets/iwall.png');
+      game.load.image('health', 'assets/cross.png');
 
       // load all assets
    },

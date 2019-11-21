@@ -4,7 +4,7 @@
  */
 var menuState = {
    create: function() {
-      game.add.sprite(0,0, 'blue');
+      //game.add.sprite(0,0, 'blue');
       //  if(space.isDown) {
         //game.state.start('level');
         space = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
