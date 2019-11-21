@@ -11,6 +11,7 @@ var zprincipal;
 var cursors;
 var door;
 var blue;
+var health = 6;
 
 game.state.add('boot', bootState);
 game.state.add('load', loadState);
