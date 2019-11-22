@@ -19,8 +19,10 @@ var loadState = {
 
    create: function() {
       game.state.start('menu');
-      //w = game.input.keyboard.addKey(Phaser.KeyCode.W);
-      //s = game.input.keyboard.addKey(Phaser.KeyCode.S);
+      w = game.input.keyboard.addKey(Phaser.KeyCode.W);
+      a = game.input.keyboard.addKey(Phaser.KeyCode.A);
+      d = game.input.keyboard.addKey(Phaser.KeyCode.D);
+      s = game.input.keyboard.addKey(Phaser.KeyCode.S);
       space = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
       cursors = game.input.keyboard.createCursorKeys();
    }

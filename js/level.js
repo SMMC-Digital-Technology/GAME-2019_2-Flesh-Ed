@@ -21,15 +21,13 @@ var levelState = {
      iwall3 = game.add.sprite(82, 82, 'iwall');
      iwall4 = game.add.sprite(718, 82, 'iwall');
 
-     health = game.add.sprite(600, 40, 'health');
-     health2 = game.add.sprite(620, 50, 'health');
-     health3 = game.add.sprite(600, 60, 'health');
-     health4 = game.add.sprite(600, 70, 'health');
-     health5 = game.add.sprite(600, 80, 'health');
-     health6 = game.add.sprite(600, 90, 'health');
+    // health = game.add.sprite(680, 30, 'health');
 
-     health3.scale.x *= -1;
-     health.scale.setTo(0.9, 0.9);
+    health = 6;
+    healthIcon = game.add.sprite(680, 30, 'health');
+    healthIcon.scale.setTo(1.2, 1.2);
+    healthText = game.add.text(650, 30, health, {font: '25px Arial', fill: '#ffffff'});
+     
 
      iwall.width = 636;
      iwall2.width = 636;
@@ -69,11 +67,11 @@ var levelState = {
     update: function() {
 
            // do things on the game loop
-           if(cursors.left.isDown) {
+           if(a.isDown) {
               //  Move to the left
               ed.body.velocity.x = -150;
               //ed.animations.play('left');
-           } else if (cursors.right.isDown) {
+           } else if (d.isDown) {
               //  Move to the right
               ed.body.velocity.x = 150;
               //ed.animations.play('right');
@@ -82,9 +80,9 @@ var levelState = {
              ed.body.velocity.x = 0;
            }
 
-           if (cursors.up.isDown) {
+           if (w.isDown) {
              ed.body.velocity.y = -150;
-           } else if (cursors.down.isDown) {
+           } else if (s.isDown) {
              ed.body.velocity.y = 150;
              }
              else {
@@ -92,6 +90,7 @@ var levelState = {
              }
 
                game.physics.arcade.collide(ed, door, () => {game.state.start('level2');});
+               game.physics.arcade.collide(ed, blue, this.removeHealth);
 
              game.physics.arcade.collide(ed, iwall);
              game.physics.arcade.collide(ed, iwall2);
@@ -104,6 +103,10 @@ var levelState = {
              iwall4.alpha = 0
 
              door.alpha = 0
+           },
+           removeHealth: function(a,b) {
+            health -= 1;
+            healthText.text = health;
            }
 
    };

@@ -20,6 +20,11 @@ var level2State = {
      iwall3.height = 436;
      iwall4.height = 436;
 
+     health = 6;
+     healthIcon = game.add.sprite(680, 30, 'health');
+     healthIcon.scale.setTo(1.2, 1.2);
+     healthText = game.add.text(650, 30, health, {font: '25px Arial', fill: '#ffffff'});
+
      //wall = game.add.group();
      //wall.add(iwall);
      //wall.add(iwall2);
@@ -49,11 +54,11 @@ var level2State = {
   update: function() {
 
      // do things on the game loop
-     if (cursors.left.isDown) {
+     if (a.isDown) {
         //  Move to the left
         ed.body.velocity.x = -150;
         //ed.animations.play('left');
-     } else if (cursors.right.isDown) {
+     } else if (d.isDown) {
         //  Move to the right
         ed.body.velocity.x = 150;
         //ed.animations.play('right');
@@ -62,9 +67,9 @@ var level2State = {
        ed.body.velocity.x = 0;
      }
 
-     if (cursors.up.isDown) {
+     if (w.isDown) {
        ed.body.velocity.y = -150;
-     } else if (cursors.down.isDown) {
+     } else if (s.isDown) {
        ed.body.velocity.y = 150;
        }
        else {
@@ -72,6 +77,7 @@ var level2State = {
        }
 
          game.physics.arcade.collide(ed, door, () => {game.state.start('level');});
+         game.physics.arcade.collide(ed, blue, this.removeHealth);
 
          game.physics.arcade.collide(ed, iwall);
          game.physics.arcade.collide(ed, iwall2);
@@ -85,6 +91,11 @@ var level2State = {
 
          door.alpha = 0
 
-         game.physics.arcade.collide(ed, blue, () => {game.state.start('gameover');});
+        // game.physics.arcade.collide(ed, blue, () => {healthIcons = -1);});
+     },
+
+     removeHealth: function(a,b) {
+      health -= 1;
+      healthText.text = health;
      }
   };
