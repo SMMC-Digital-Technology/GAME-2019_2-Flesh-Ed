@@ -13,6 +13,8 @@ var loadState = {
       game.load.image('door', 'assets/dor.png');
       game.load.image('iwall', 'assets/iwall.png');
       game.load.image('health', 'assets/cross.png');
+      game.load.image('zombieS', 'assets/zombie student.png');
+      game.load.image('pencil', 'assets/pencil.png');
 
       // load all assets
    },
