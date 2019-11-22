@@ -27,7 +27,7 @@ var levelState = {
     healthIcon = game.add.sprite(680, 30, 'health');
     healthIcon.scale.setTo(1.2, 1.2);
     healthText = game.add.text(650, 30, health, {font: '25px Arial', fill: '#ffffff'});
-     
+
 
      iwall.width = 636;
      iwall2.width = 636;
@@ -90,7 +90,7 @@ var levelState = {
              }
 
                game.physics.arcade.collide(ed, door, () => {game.state.start('level2');});
-               game.physics.arcade.collide(ed, blue, this.removeHealth);
+               game.physics.arcade.collide(ed, zombieT, this.removeHealth);
 
              game.physics.arcade.collide(ed, iwall);
              game.physics.arcade.collide(ed, iwall2);

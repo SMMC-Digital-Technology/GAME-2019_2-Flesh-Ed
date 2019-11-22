@@ -1,8 +1,7 @@
 var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'game-world');
 
 var ed;
-var zteacher;
-var zstudent;
+var zombieS;
 var zscience;
 var zpe;
 var zlibrarian;
@@ -10,7 +9,7 @@ var zjock;
 var zprincipal;
 var cursors;
 var door;
-var blue;
+var zombieT;
 var health = 6;
 var healthIcons;
 
