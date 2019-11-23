@@ -7,7 +7,7 @@ var loadState = {
          font: '30px Courier',
          fill: '#ffffff'
       });
-      game.load.image('green', 'assets/green.png');
+      game.load.image('room', 'assets/room.png');
       game.load.image('ed', 'assets/ed.png');
       game.load.image('zombieT', 'assets/zombie teacher.png');
       game.load.image('door', 'assets/dor.png');
