@@ -55,115 +55,117 @@ var level2State = {
     iwall4.body.immovable = true;
 
 
-	pencils = game.add.group();
+    pencils = game.add.group();
 
-	pencils.enableBody = true;
+    pencils.enableBody = true;
 
-	pencils.physicsBodyType = Phaser.Physics.ARCADE;
+    pencils.physicsBodyType = Phaser.Physics.ARCADE;
 
-	pencils.createMultiple(20, 'pencil');
+    pencils.createMultiple(20, 'pencil');
 
-  pencils.callAll('events.onOutOfBounds.add', 'events.onOutOfBounds', this.resetPencil);
-  pencils.callAll('anchor.setTo', 'anchor', 0.5, 1.0);
-  pencils.setAll('checkWorldBounds', true);
+    pencils.callAll('events.onOutOfBounds.add', 'events.onOutOfBounds', this.resetPencil);
+    pencils.callAll('anchor.setTo', 'anchor', 0.5, 1.0);
+    pencils.setAll('checkWorldBounds', true);
 
-  ed.anchor.setTo(0.5, 1.0);
-  //ed.animations.add('up', [0, 1, 2], 10, true);
+    ed.anchor.setTo(0.5, 1.0);
+    //ed.animations.add('up', [0, 1, 2], 10, true);
   },
 
 
 
   update: function() {
 
-     // do things on the game loop
-     if (a.isDown) {
-        //  Move to the left
-        ed.body.velocity.x = -150;
-        //ed.animations.play('left');
-     } else if (d.isDown) {
-        //  Move to the right
-        ed.body.velocity.x = 150;
-        //ed.animations.play('right');
-     } else {
-        //  Stand still
-       ed.body.velocity.x = 0;
-     }
+    // do things on the game loop
+    if (a.isDown) {
+      //  Move to the left
+      ed.body.velocity.x = -150;
+      //ed.animations.play('left');
+    } else if (d.isDown) {
+      //  Move to the right
+      ed.body.velocity.x = 150;
+      //ed.animations.play('right');
+    } else {
+      //  Stand still
+      ed.body.velocity.x = 0;
+    }
 
-     if (w.isDown) {
+    if (w.isDown) {
 
-       ed.body.velocity.y = -150;
-       ed.animations.play('up');
-     } else if (s.isDown) {
+      ed.body.velocity.y = -150;
+      ed.animations.play('up');
+    } else if (s.isDown) {
 
-       ed.body.velocity.y = 150;
+      ed.body.velocity.y = 150;
 
-       }
-       else {
-         ed.body.velocity.y = 0;
-       }
+    } else {
+      ed.body.velocity.y = 0;
+    }
 
-         game.physics.arcade.collide(ed, door, () => {game.state.start('level');});
-         game.physics.arcade.collide(ed, blue, this.removeHealth);
+    game.physics.arcade.collide(ed, door, () => {
+      game.state.start('level');
+    });
+    game.physics.arcade.collide(ed, blue, this.removeHealth);
 
-         game.physics.arcade.collide(ed, iwall);
-         game.physics.arcade.collide(ed, iwall2);
-         game.physics.arcade.collide(ed, iwall3);
-         game.physics.arcade.collide(ed, iwall4);
+    game.physics.arcade.collide(ed, iwall);
+    game.physics.arcade.collide(ed, iwall2);
+    game.physics.arcade.collide(ed, iwall3);
+    game.physics.arcade.collide(ed, iwall4);
 
-         iwall.alpha = 0
-         iwall2.alpha = 0
-         iwall3.alpha = 0
-         iwall4.alpha = 0
+    iwall.alpha = 0
+    iwall2.alpha = 0
+    iwall3.alpha = 0
+    iwall4.alpha = 0
 
-         door.alpha = 0
+    door.alpha = 0
 
-         if (health == 0) {
-           //console.log('dasdsadsa');
-           game.state.start('gameover');
-         }
+    if (health == 0) {
+      //console.log('dasdsadsa');
+      game.state.start('gameover');
+    }
 
 
-       	if (cursors.up.isDown) {
+    if (cursors.up.isDown) {
 
-       		if (!mouseTouchDown) {
-       			this.touchDown();
-       		}
-       	} else {
-       		if (mouseTouchDown) {
-       			this.touchUp();
-       		}
-       	}
-     },
+      if (!mouseTouchDown) {
+        this.touchDown();
+      }
+    } else {
+      if (mouseTouchDown) {
+        this.touchUp();
+      }
+    }
+  },
 
-     removeHealth: function(a,b) {
-      health -= 1;
-      healthText.text = health;
-    },
+  removeHealth: function(a, b) {
+    health -= 1;
+    healthText.text = health;
+  },
 
-     resetPencil: function(pencil) {
-       pencil.kill();
-     },
+  resetPencil: function(pencil) {
+    pencil.kill();
+  },
 
-     touchDown: function() {
+  touchDown: function() {
 
-	mouseTouchDown = true;
-	this.firePencil();
-},
+    mouseTouchDown = true;
+    this.firePencil();
+  },
 
-touchUp: function() {
+  touchUp: function() {
 
-	mouseTouchDown = false;
-},
+    mouseTouchDown = false;
+  },
 
   firePencil: function() {
 
-	var pencil = pencils.getFirstExists(false);
+    var pencil = pencils.getFirstExists(false);
 
-	if (pencil) {
+    if (pencil) {
 
-		pencil.reset(ed.x, ed.y - 20);
+      pencil.reset(ed.x, ed.y - 20);
 
-		pencil.body.velocity.y = -500;
-	}
+      pencil.body.velocity.y = -500;
+    }
 
-}};
+  }
+};
