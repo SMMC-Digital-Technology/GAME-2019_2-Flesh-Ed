@@ -1,35 +1,38 @@
 var level2State = {
 
   render: function() {
-   game.debug.body(ed);
-   game.debug.body(door);
+    game.debug.body(ed);
+    game.debug.body(door);
   },
   create: function() {
-    game.add.sprite(0, 0, 'green');
-    ed = game.add.sprite(110, 333, 'ed');
+    game.add.sprite(0, 0, 'room');
+    ed = game.add.sprite(100, 265, 'ed');
     door = game.add.sprite(12, 265, 'door');
-    blue = game.add.sprite(64, 64, 'blue');
+    zombieT = game.add.sprite(64, 64, 'zombieT');
 
-     // create the lev
-     iwall = game.add.sprite(82, 82, 'iwall');
-     iwall2 = game.add.sprite(82, 518, 'iwall');
-     iwall3 = game.add.sprite(82, 82, 'iwall');
-     iwall4 = game.add.sprite(718, 82, 'iwall');
+    // create the lev
+    iwall = game.add.sprite(82, 82, 'iwall');
+    iwall2 = game.add.sprite(82, 518, 'iwall');
+    iwall3 = game.add.sprite(82, 82, 'iwall');
+    iwall4 = game.add.sprite(718, 82, 'iwall');
 
-     iwall.width = 636;
-     iwall2.width = 636;
-     iwall3.height = 436;
-     iwall4.height = 436;
+    iwall.width = 636;
+    iwall2.width = 636;
+    iwall3.height = 436;
+    iwall4.height = 436;
 
-     health = 6;
-     healthIcon = game.add.sprite(680, 30, 'health');
-     healthIcon.scale.setTo(1.2, 1.2);
-     healthText = game.add.text(650, 30, health, {font: '25px Arial', fill: '#ffffff'});
+    health = 6;
+    healthIcon = game.add.sprite(680, 30, 'health');
+    healthIcon.scale.setTo(1.2, 1.2);
+    healthText = game.add.text(650, 30, health, {
+      font: '25px Arial',
+      fill: '#ffffff'
+    });
 
-     //wall = game.add.group();
-     //wall.add(iwall);
-     //wall.add(iwall2);
-     //wall.add(iwall3);
+    //wall = game.add.group();
+    //wall.add(iwall);
+    //wall.add(iwall2);
+    //wall.add(iwall3);
     // wall.add(iwall4);
 
     game.physics.arcade.enable(ed);
@@ -41,11 +44,11 @@ var level2State = {
 
     game.physics.arcade.enable(ed);
     game.physics.arcade.enable(door);
-    game.physics.arcade.enable(blue);
+    game.physics.arcade.enable(zombieT);
     ed.body.collideWorldBounds = true;
 
     door.body.immovable = true;
-    blue.body.immovable = true;
+    zombieT.body.immovable = true;
     iwall.body.immovable = true;
     iwall2.body.immovable = true;
     iwall3.body.immovable = true;
