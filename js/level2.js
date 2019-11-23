@@ -119,9 +119,9 @@ var level2State = {
            game.state.start('gameover');
          }
 
-         // Game.input.activePointer is either the first finger touched, or the mouse
+
        	if (cursors.up.isDown) {
-       		// We'll manually keep track if the pointer wasn't already down
+
        		if (!mouseTouchDown) {
        			this.touchDown();
        		}
@@ -142,24 +142,24 @@ var level2State = {
      },
 
      touchDown: function() {
-	// Set touchDown to true, so we only trigger this once
+
 	mouseTouchDown = true;
 	this.firePencil();
 },
 
 touchUp: function() {
-	// Set touchDown to false, so we can trigger touchDown on the next click
+
 	mouseTouchDown = false;
 },
 
   firePencil: function() {
-	// Get the first laser that's inactive, by passing 'false' as a parameter
+
 	var pencil = pencils.getFirstExists(false);
 
 	if (pencil) {
-		// If we have a laser, set it to the starting position
+
 		pencil.reset(ed.x, ed.y - 20);
-		// Give it a velocity of -500 so it starts shooting
+
 		pencil.body.velocity.y = -500;
 	}
 
