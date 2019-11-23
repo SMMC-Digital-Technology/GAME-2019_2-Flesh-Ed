@@ -164,7 +164,42 @@ var levelState = {
   }
 
   //right fire
+  if (cursors.right.isDown) {
+    if(!mouseTouchDown) {
+      this.touchUp();
+    }
+  } else {
+    if (mouseTouchDown) {
+      this.touchUp();
+    }
+  }
 
+  removeHealth: function(a, b) {
+    health -= 1;
+    healthText.text = health;
+  },
+
+  resetPencil: function(pencil) {
+    pencil.kill();
+  },
+
+  touchDown: function() {
+    mouseTouchDown = true;
+    this.firePencil();
+  },
+
+  touchUp: function() {
+    mouseTouchDown = false;
+  },
+
+  firePencil: function() {
+    var pencil = pencils.getFirstExists(false);
+
+    if (pencil) {
+      pencil.reset(ed.x, ed.y -20);
+      pencil.body.velocity.y = -500;
+    }
+  }
 
 };
 // this is how you write a function
