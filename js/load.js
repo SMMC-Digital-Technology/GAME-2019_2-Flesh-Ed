@@ -27,6 +27,9 @@ var loadState = {
     game.load.image('health', 'assets/cross.png');
     game.load.image('pencil', 'assets/pencil.png');
 
+    //anything else that we dont know where to input
+    game.load.image('qwerty', 'assets/menu.png');
+
     // loads all assets
   },
 
