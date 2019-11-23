@@ -9,10 +9,10 @@ var loadState = {
     });
     //ed
     game.load.image('ed', 'assets/ed.png');
-      //game.load.image('edleft', 'assets/Ed a.png');
-      //game.load.image('edright', 'assets/Ed d.png');
-      //game.load.image('edfront', 'assets/Ed s.png');
-      //game.load.image('edback', 'assets/Ed w.png');
+    //game.load.image('edleft', 'assets/Ed a.png');
+    //game.load.image('edright', 'assets/Ed d.png');
+    //game.load.image('edfront', 'assets/Ed s.png');
+    //game.load.image('edback', 'assets/Ed w.png');
 
     //enemies
     game.load.image('zombieT', 'assets/zombie teacher.png');

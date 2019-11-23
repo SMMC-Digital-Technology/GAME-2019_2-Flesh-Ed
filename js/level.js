@@ -115,6 +115,9 @@ var levelState = {
 
     door.alpha = 0
 
+    // how to ( ͡° ͜ʖ ͡°) ▄︻ ̿┻̿═━一
+
+    //up fire
     // Game.input.activePointer is either the first finger touched, or the mouse
     if (cursors.up.isDown) {
       // We'll manually keep track if the pointer wasn't already down
@@ -159,6 +162,10 @@ var levelState = {
       pencil.body.velocity.y = -500;
     }
   }
+
+  //right fire
+
+
 };
 // this is how you write a function
 // note the comma after the } above
