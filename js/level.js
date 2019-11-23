@@ -27,7 +27,7 @@ var levelState = {
     healthIcon = game.add.sprite(680, 30, 'health');
     healthIcon.scale.setTo(1.2, 1.2);
     healthText = game.add.text(650, 30, health, {font: '25px Arial', fill: '#ffffff'});
-     
+
 
      iwall.width = 636;
      iwall2.width = 636;
@@ -56,12 +56,19 @@ var levelState = {
      iwall3.body.immovable = true;
      iwall4.body.immovable = true;
 
-  //   health = 3;
-    // healthIcons = [];
-     //for (var i = 0; i < health; i++) {
-      // healthIcons[i] = game.add.sprite(game.world.width - i * 32 - 32, 16, 'health');
-       //healthIcons[i].scale.setTo(0.75, 0.75);
-      // create the lev
+     pencils = game.add.group();
+
+     pencils.enableBody = true;
+
+     pencils.physicsBodyType = Phaser.Physics.ARCADE;
+
+     pencils.createMultiple(20, 'pencil');
+
+      pencils.callAll('events.onOutOfBounds.add', 'events.onOutOfBounds', this.resetPencil);
+      pencils.callAll('anchor.setTo', 'anchor', 0.5, 1.0);
+      pencils.setAll('checkWorldBounds', true);
+
+      ed.anchor.setTo(0.5, 1.0);
    },
 
     update: function() {
@@ -89,8 +96,8 @@ var levelState = {
                ed.body.velocity.y = 0;
              }
 
-               game.physics.arcade.collide(ed, door, () => {game.state.start('level2');});
-               game.physics.arcade.collide(ed, blue, this.removeHealth);
+             game.physics.arcade.collide(ed, door, () => {game.state.start('level2');});
+             game.physics.arcade.collide(ed, blue, this.removeHealth);
 
              game.physics.arcade.collide(ed, iwall);
              game.physics.arcade.collide(ed, iwall2);
@@ -103,14 +110,52 @@ var levelState = {
              iwall4.alpha = 0
 
              door.alpha = 0
+
+             // Game.input.activePointer is either the first finger touched, or the mouse
+             if (cursors.up.isDown) {
+               // We'll manually keep track if the pointer wasn't already down
+               if (!mouseTouchDown) {
+                 this.touchDown();
+               }
+            }  else {
+               if (mouseTouchDown) {
+                 this.touchUp();
+               }
+             }
            },
+
            removeHealth: function(a,b) {
             health -= 1;
             healthText.text = health;
-           }
+          },
 
-   };
+           resetPencil: function(pencil) {
+             pencil.kill();
+           },
 
+           touchDown: function() {
+       // Set touchDown to true, so we only trigger this once
+       mouseTouchDown = true;
+       this.firePencil();
+      },
+
+      touchUp: function() {
+       // Set touchDown to false, so we can trigger touchDown on the next click
+       mouseTouchDown = false;
+      },
+
+        firePencil: function() {
+       // Get the first laser that's inactive, by passing 'false' as a parameter
+       var pencil = pencils.getFirstExists(false);
+
+       if (pencil) {
+         // If we have a laser, set it to the starting position
+         pencil.reset(ed.x, ed.y - 20);
+         // Give it a velocity of -500 so it starts shooting
+         pencil.body.velocity.y = -500;
+       }
+   }
+ };
    // this is how you write a function
    // note the comma after the } above
    // see that variables go in the brackets still

@@ -1,11 +1,12 @@
 var level2State = {
+
   render: function() {
    game.debug.body(ed);
    game.debug.body(door);
   },
   create: function() {
     game.add.sprite(0, 0, 'green');
-    ed = game.add.sprite(100, 265, 'ed');
+    ed = game.add.sprite(110, 333, 'ed');
     door = game.add.sprite(12, 265, 'door');
     blue = game.add.sprite(64, 64, 'blue');
 
@@ -49,7 +50,25 @@ var level2State = {
     iwall2.body.immovable = true;
     iwall3.body.immovable = true;
     iwall4.body.immovable = true;
+
+
+	pencils = game.add.group();
+
+	pencils.enableBody = true;
+
+	pencils.physicsBodyType = Phaser.Physics.ARCADE;
+
+	pencils.createMultiple(20, 'pencil');
+
+  pencils.callAll('events.onOutOfBounds.add', 'events.onOutOfBounds', this.resetPencil);
+  pencils.callAll('anchor.setTo', 'anchor', 0.5, 1.0);
+  pencils.setAll('checkWorldBounds', true);
+
+  ed.anchor.setTo(0.5, 1.0);
+  //ed.animations.add('up', [0, 1, 2], 10, true);
   },
+
+
 
   update: function() {
 
@@ -68,9 +87,13 @@ var level2State = {
      }
 
      if (w.isDown) {
+
        ed.body.velocity.y = -150;
+       ed.animations.play('up');
      } else if (s.isDown) {
+
        ed.body.velocity.y = 150;
+
        }
        else {
          ed.body.velocity.y = 0;
@@ -91,11 +114,53 @@ var level2State = {
 
          door.alpha = 0
 
-        // game.physics.arcade.collide(ed, blue, () => {healthIcons = -1);});
+         if (health == 0) {
+           //console.log('dasdsadsa');
+           game.state.start('gameover');
+         }
+
+         // Game.input.activePointer is either the first finger touched, or the mouse
+       	if (cursors.up.isDown) {
+       		// We'll manually keep track if the pointer wasn't already down
+       		if (!mouseTouchDown) {
+       			this.touchDown();
+       		}
+       	} else {
+       		if (mouseTouchDown) {
+       			this.touchUp();
+       		}
+       	}
      },
 
      removeHealth: function(a,b) {
       health -= 1;
       healthText.text = health;
-     }
-  };
+    },
+
+     resetPencil: function(pencil) {
+       pencil.kill();
+     },
+
+     touchDown: function() {
+	// Set touchDown to true, so we only trigger this once
+	mouseTouchDown = true;
+	this.firePencil();
+},
+
+touchUp: function() {
+	// Set touchDown to false, so we can trigger touchDown on the next click
+	mouseTouchDown = false;
+},
+
+  firePencil: function() {
+	// Get the first laser that's inactive, by passing 'false' as a parameter
+	var pencil = pencils.getFirstExists(false);
+
+	if (pencil) {
+		// If we have a laser, set it to the starting position
+		pencil.reset(ed.x, ed.y - 20);
+		// Give it a velocity of -500 so it starts shooting
+		pencil.body.velocity.y = -500;
+	}
+
+}};
