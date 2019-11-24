@@ -103,7 +103,7 @@ var level2State = {
        }
 
          game.physics.arcade.collide(ed, door, () => {game.state.start('level');});
-         game.physics.arcade.collide(ed, blue, this.removeHealth);
+         game.physics.arcade.collide(ed, zombieT, this.removeHealth);
 
          game.physics.arcade.collide(ed, iwall);
          game.physics.arcade.collide(ed, iwall2);
