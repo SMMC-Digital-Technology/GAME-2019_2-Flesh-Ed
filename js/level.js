@@ -198,6 +198,14 @@ var levelState = {
       pencil.body.velocity.y = -500;
     }
   //right fire
+<<<<<<< HEAD
+=======
+  if (curors.right.isDown) {
+    if (!mouseTouchDown) {
+      this.touchUp();
+    }
+  }
+>>>>>>> f2f13d50aa50a6d9ce545076db9ba9224afc78f7
 
 },
   removeHealth: function(a, b) {
@@ -205,6 +213,7 @@ var levelState = {
     healthText.text = health;
   },
 
+<<<<<<< HEAD
   resetPencil: function(pencil) {
     pencil.kill();
   },
@@ -234,11 +243,14 @@ var levelState = {
     }
   },
   firePencilDown: function() {
+=======
+  resetPencil: function() {
+>>>>>>> f2f13d50aa50a6d9ce545076db9ba9224afc78f7
     var pencil = pencils.getFirstExists(false);
 
     if (pencil) {
-      pencil.reset(ed.x, ed.y -20);
-      pencil.body.velocity.y = -500;
+      pencil.reset(ed.x, ed.y - 20);
+      pencil.body.velocity.x = -500
     }
   },
 
