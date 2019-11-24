@@ -165,7 +165,7 @@ var levelState = {
 
   //right fire
   if (curors.right.isDown) {
-    if(!mouseTouchDown) {
+    if (!mouseTouchDown) {
       this.touchUp();
     }
   }
@@ -179,7 +179,7 @@ var levelState = {
     var pencil = pencils.getFirstExists(false);
 
     if (pencil) {
-      pencil.reset(ed.x, ed.y -20);
+      pencil.reset(ed.x, ed.y - 20);
       pencil.body.velocity.x = -500
     }
   }
