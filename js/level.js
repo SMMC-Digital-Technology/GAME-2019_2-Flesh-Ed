@@ -164,12 +164,8 @@ var levelState = {
   }
 
   //right fire
-  if (cursors.right.isDown) {
+  if (curors.right.isDown) {
     if(!mouseTouchDown) {
-      this.touchUp();
-    }
-  } else {
-    if (mouseTouchDown) {
       this.touchUp();
     }
   }
@@ -179,25 +175,12 @@ var levelState = {
     healthText.text = health;
   },
 
-  resetPencil: function(pencil) {
-    pencil.kill();
-  },
-
-  touchDown: function() {
-    mouseTouchDown = true;
-    this.firePencil();
-  },
-
-  touchUp: function() {
-    mouseTouchDown = false;
-  },
-
-  firePencil: function() {
+  resetPencil: function() {
     var pencil = pencils.getFirstExists(false);
 
     if (pencil) {
       pencil.reset(ed.x, ed.y -20);
-      pencil.body.velocity.y = -500;
+      pencil.body.velocity.x = -500
     }
   }
 
