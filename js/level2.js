@@ -123,9 +123,12 @@ var level2State = {
       game.state.start('gameover');
     }
 
+    // how to ( ͡° ͜ʖ ͡°) ▄︻ ̿┻̿═━一
 
+    //up fire
+    // Game.input.activePointer is either the first finger touched, or the mouse
     if (cursors.up.isDown) {
-
+      // We'll manually keep track if the pointer wasn't already down
       if (!mouseTouchDown) {
         this.touchDown();
       }
@@ -134,38 +137,123 @@ var level2State = {
         this.touchUp();
       }
     }
-  },
 
-  removeHealth: function(a, b) {
-    health -= 1;
-    healthText.text = health;
-  },
-
-  resetPencil: function(pencil) {
-    pencil.kill();
-  },
-
-  touchDown: function() {
-
-    mouseTouchDown = true;
-    this.firePencil();
-  },
-
-  touchUp: function() {
-
-    mouseTouchDown = false;
-  },
-
-  firePencil: function() {
-
-    var pencil = pencils.getFirstExists(false);
-
-    if (pencil) {
-
-      pencil.reset(ed.x, ed.y - 20);
-
-      pencil.body.velocity.y = -500;
+    if (cursors.right.isDown) {
+      if(!mouseTouchDown) {
+        this.touchRight();
+      }
+    } else {
+      if (mouseTouchDown) {
+        this.touchUp();
+      }
     }
 
-  }
-};
+    if (cursors.left.isDown) {
+      if(!mouseTouchDown) {
+        this.touchLeft();
+      }
+    } else {
+      if (mouseTouchDown) {
+        this.touchUp();
+      }
+    }
+
+    if (cursors.down.isDown) {
+      if(!mouseTouchDown) {
+        this.touchBelow();
+      }
+    } else {
+      if (mouseTouchDown) {
+        this.touchUp();
+      }
+    }
+  },
+    //right fire
+
+    resetPencil: function(pencil) {
+      pencil.kill();
+    },
+
+    touchDown: function() {
+      // Set touchDown to true, so we only trigger this once
+      mouseTouchDown = true;
+      this.firePencil();
+    },
+
+    touchUp: function() {
+      // Set touchDown to false, so we can trigger touchDown on the next click
+      mouseTouchDown = false;
+    },
+
+    firePencil: function() {
+      // Get the first laser that's inactive, by passing 'false' as a parameter
+      var pencil = pencils.getFirstExists(false);
+
+      if (pencil) {
+        // If we have a laser, set it to the starting position
+        pencil.reset(ed.x, ed.y - 20);
+        // Give it a velocity of -500 so it starts shooting
+        pencil.body.velocity.y = -500;
+      }
+    },
+
+    removeHealth: function(a, b) {
+      health -= 1;
+      healthText.text = health;
+    },
+
+
+      resetPencil: function(pencil) {
+        pencil.kill();
+      },
+
+      touchBelow: function() {
+        mouseTouchDown = true;
+        this.firePencilDown();
+      },
+
+      touchUp: function() {
+        mouseTouchDown = false;
+      },
+      touchRight: function() {
+      mouseTouchDown = true;
+      this.firePencilRight();
+      },
+      touchLeft: function() {
+        mouseTouchDown = true;
+        this.firePencilLeft();
+      },
+      firePencilUp: function() {
+        var pencil = pencils.getFirstExists(false);
+
+        if (pencil) {
+          pencil.reset(ed.x, ed.y -20);
+          pencil.body.velocity.y = -500;
+        }
+      },
+      firePencilDown: function() {
+        var pencil = pencils.getFirstExists(false);
+
+        if (pencil) {
+          pencil.reset(ed.x, ed.y -20);
+          pencil.body.velocity.y = -500;
+        }
+      },
+
+      firePencilLeft: function() {
+        var pencil = pencils.getFirstExists(false);
+
+        if (pencil) {
+          pencil.reset(ed.x, ed.y -62);
+          pencil.body.velocity.y = -500;
+        }
+      },
+
+      firePencilRight: function() {
+        var pencil = pencils.getFirstExists(false);
+
+        if (pencil) {
+          pencil.reset(ed.x, ed.y -10);
+          pencil.body.velocity.y = 500;
+        }
+      }};

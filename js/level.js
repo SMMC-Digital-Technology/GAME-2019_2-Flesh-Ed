@@ -14,7 +14,7 @@ var levelState = {
 
   create: function() {
     game.add.sprite(0, 0, 'room');
-    ed = game.add.sprite(650, 300, 'ed');
+    ed = game.add.sprite(650, 500, 'ed');
     door = game.add.sprite(717, 265, 'door');
     iwall = game.add.sprite(82, 82, 'iwall');
     iwall2 = game.add.sprite(82, 518, 'iwall');
@@ -71,6 +71,11 @@ var levelState = {
     pencils.callAll('anchor.setTo', 'anchor', 0.5, 1.0);
     pencils.setAll('checkWorldBounds', true);
 
+    ed.animations.add('left', [0, 6, 7], 10, true);
+    ed.animations.add('right', [0, 8, 9], 10, true);
+    ed.animations.add('up', [0, 4, 5], 10, true);
+    ed.animations.add('down', [0, 1, 2, 3], 10, true);
+
     ed.anchor.setTo(0.5, 1.0);
   },
 
@@ -80,6 +85,7 @@ var levelState = {
     if (a.isDown) {
       //  Move to the left
       ed.body.velocity.x = -150;
+      ed.animations.play('left');
       //ed.animations.play('left');
     } else if (d.isDown) {
       //  Move to the right
@@ -129,6 +135,36 @@ var levelState = {
         this.touchUp();
       }
     }
+
+    if (cursors.right.isDown) {
+      if(!mouseTouchDown) {
+        this.touchRight();
+      }
+    } else {
+      if (mouseTouchDown) {
+        this.touchUp();
+      }
+    }
+
+    if (cursors.left.isDown) {
+      if(!mouseTouchDown) {
+        this.touchLeft();
+      }
+    } else {
+      if (mouseTouchDown) {
+        this.touchUp();
+      }
+    }
+
+    if (cursors.down.isDown) {
+      if(!mouseTouchDown) {
+        this.touchBelow();
+      }
+    } else {
+      if (mouseTouchDown) {
+        this.touchUp();
+      }
+    }
   },
 
   removeHealth: function(a, b) {
@@ -161,19 +197,9 @@ var levelState = {
       // Give it a velocity of -500 so it starts shooting
       pencil.body.velocity.y = -500;
     }
-  }
-
   //right fire
-  if (cursors.right.isDown) {
-    if(!mouseTouchDown) {
-      this.touchUp();
-    }
-  } else {
-    if (mouseTouchDown) {
-      this.touchUp();
-    }
-  }
 
+},
   removeHealth: function(a, b) {
     health -= 1;
     healthText.text = health;
@@ -183,21 +209,54 @@ var levelState = {
     pencil.kill();
   },
 
-  touchDown: function() {
+  touchBelow: function() {
     mouseTouchDown = true;
-    this.firePencil();
+    this.firePencilDown();
   },
 
   touchUp: function() {
     mouseTouchDown = false;
   },
-
-  firePencil: function() {
+  touchRight: function() {
+  mouseTouchDown = true;
+  this.firePencilRight();
+  },
+  touchLeft: function() {
+    mouseTouchDown = true;
+    this.firePencilLeft();
+  },
+  firePencilUp: function() {
     var pencil = pencils.getFirstExists(false);
 
     if (pencil) {
       pencil.reset(ed.x, ed.y -20);
       pencil.body.velocity.y = -500;
+    }
+  },
+  firePencilDown: function() {
+    var pencil = pencils.getFirstExists(false);
+
+    if (pencil) {
+      pencil.reset(ed.x, ed.y -20);
+      pencil.body.velocity.y = -500;
+    }
+  },
+
+  firePencilLeft: function() {
+    var pencil = pencils.getFirstExists(false);
+
+    if (pencil) {
+      pencil.reset(ed.x, ed.y -62);
+      pencil.body.velocity.y = -500;
+    }
+  },
+
+  firePencilRight: function() {
+    var pencil = pencils.getFirstExists(false);
+
+    if (pencil) {
+      pencil.reset(ed.x, ed.y -10);
+      pencil.body.velocity.y = 500;
     }
   }
 
