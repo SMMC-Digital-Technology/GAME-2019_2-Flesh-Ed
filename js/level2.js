@@ -274,4 +274,6 @@ var level2State = {
           pencil.reset(ed.x, ed.y -20);
           pencil.body.velocity.x = 500;
         }
-      }};
+      }
+      game.physics.arcade.moveToObject(zombieT, ed, //velocity?)
+    };
