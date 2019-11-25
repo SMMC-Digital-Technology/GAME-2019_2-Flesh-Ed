@@ -1,10 +1,5 @@
 var level2State = {
 
-  render: function() {
-    game.debug.body(ed);
-    game.debug.body(door);
-    game.debug.body(door2);
-  },
   create: function() {
     game.add.sprite(0, 0, 'room');
     ed = game.add.sprite(120, 336, 'ed');
@@ -109,7 +104,7 @@ var level2State = {
     });
     game.physics.arcade.collide(ed, zombieT, this.removeHealth);
 
-    game.physics.arcade.collide(pencils, zombieT, this.removeZombieT);
+    game.physics.arcade.collide(zombieT, pencils, this.removeZombieT);
 
     game.physics.arcade.collide(ed, door2   , () => {
       game.state.start('level3');
@@ -181,8 +176,9 @@ var level2State = {
   }
 },
 
-    removeZombieT: function() {
+    removeZombieT: function(z, p) {
       zombieT.kill();
+      p.kill();
     },
     resetPencil: function(pencil) {
       pencil.kill();
