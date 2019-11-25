@@ -3,6 +3,9 @@
  */
 var gameoverState = {
   create: function() {
+
+    game.add.sprite(0,0, 'qwerty');
+
     //game.add.sprite(0,0, 'blue');
     //  if(space.isDown) {
     //game.state.start('level');

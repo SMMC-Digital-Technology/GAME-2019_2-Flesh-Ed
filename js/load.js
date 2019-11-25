@@ -3,7 +3,7 @@
  */
 var loadState = {
   preload: function() {
-    loadingLabel = game.add.text(80, 150, 'be patient loading...', {
+    loadingLabel = game.add.text(80, 150, 'be patient, loading...', {
       font: '30px Courier',
       fill: '#ffffff'
     });
