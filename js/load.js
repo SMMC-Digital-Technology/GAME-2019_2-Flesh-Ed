@@ -8,11 +8,8 @@ var loadState = {
       fill: '#ffffff'
     });
     //ed
-    game.load.image('ed', 'assets/ed.png');
-    //game.load.image('edleft', 'assets/Ed a.png');
-    //game.load.image('edright', 'assets/Ed d.png');
-    //game.load.image('edfront', 'assets/Ed s.png');
-    //game.load.image('edback', 'assets/Ed w.png');
+    game.load.spritesheet('ed', 'assets/Ed sprites.png', 56, 68);
+
 
     //enemies
     game.load.image('zombieT', 'assets/zombie teacher.png');
@@ -26,6 +23,9 @@ var loadState = {
     //player
     game.load.image('health', 'assets/cross.png');
     game.load.image('pencil', 'assets/pencil.png');
+    game.load.image('pencilR', 'assets/pencilRight.png');
+    game.load.image('pencilD', 'assets/pencilDown.png');
+    game.load.image('pencilL', 'assets/pencilLeft.png');
 
     //anything else that we dont know where to input
     game.load.image('qwerty', 'assets/menu.png');

@@ -22,12 +22,14 @@ game.state.add('level', levelState);
 // remember to add in additional levels as they are made
 game.state.add('gameover', gameoverState);
 game.state.add('level2', level2State);
+game.state.add('level3', level3State);
 
 game.global = {
   // set variables that travel between the states here
   // eg score = 0;
   // access using game.global
   // eg game.gloabl.score
+  health: 6
 };
 
 game.state.start('boot');

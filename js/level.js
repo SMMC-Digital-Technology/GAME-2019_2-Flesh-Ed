@@ -22,11 +22,9 @@ var levelState = {
     iwall4 = game.add.sprite(718, 82, 'iwall');
 
     // health = game.add.sprite(680, 30, 'health');
-
-    health = 6;
     healthIcon = game.add.sprite(680, 30, 'health');
     healthIcon.scale.setTo(1.2, 1.2);
-    healthText = game.add.text(650, 30, health, {
+    healthText = game.add.text(650, 30, game.global.health, {
       font: '25px Arial',
       fill: '#ffffff'
     });
@@ -65,16 +63,16 @@ var levelState = {
 
     pencils.physicsBodyType = Phaser.Physics.ARCADE;
 
-    pencils.createMultiple(20, 'pencil');
+    pencils.createMultiple(1, 'pencil');
 
     pencils.callAll('events.onOutOfBounds.add', 'events.onOutOfBounds', this.resetPencil);
     pencils.callAll('anchor.setTo', 'anchor', 0.5, 1.0);
     pencils.setAll('checkWorldBounds', true);
 
-    ed.animations.add('left', [0, 6, 7], 10, true);
-    ed.animations.add('right', [0, 8, 9], 10, true);
-    ed.animations.add('up', [0, 4, 5], 10, true);
-    ed.animations.add('down', [0, 1, 2, 3], 10, true);
+    ed.animations.add('left', [5, 6 ], 5, true);
+    ed.animations.add('right', [7, 8], 5, true);
+    ed.animations.add('up', [3, 4], 5, true);
+    ed.animations.add('down', [1,2], 5, true);
 
     ed.anchor.setTo(0.5, 1.0);
   },
@@ -90,19 +88,26 @@ var levelState = {
     } else if (d.isDown) {
       //  Move to the right
       ed.body.velocity.x = 150;
+      ed.animations.play('right');
       //ed.animations.play('right');
     } else {
-      //  Stand still
       ed.body.velocity.x = 0;
     }
 
     if (w.isDown) {
       ed.body.velocity.y = -150;
+      ed.animations.play('up')
     } else if (s.isDown) {
       ed.body.velocity.y = 150;
-    } else {
-      ed.body.velocity.y = 0;
-    }
+      ed.animations.play('down');
+   } else {
+     ed.body.velocity.y = 0;
+   }
+
+   if (!(a.isDown || d.isDown || w.isDown || s.isDown)) {
+     ed.animations.stop();
+     ed.frame = 1;
+   }
 
     game.physics.arcade.collide(ed, door, () => {
       game.state.start('level2');
@@ -168,8 +173,8 @@ var levelState = {
   },
 
   removeHealth: function(a, b) {
-    health -= 1;
-    healthText.text = health;
+    game.global.health -= 1;
+    healthText.text = game.global.health;
   },
 
   resetPencil: function(pencil) {
@@ -198,22 +203,13 @@ var levelState = {
       pencil.body.velocity.y = -500;
     }
   //right fire
-<<<<<<< HEAD
-=======
-  if (curors.right.isDown) {
-    if (!mouseTouchDown) {
-      this.touchUp();
-    }
-  }
->>>>>>> f2f13d50aa50a6d9ce545076db9ba9224afc78f7
 
 },
   removeHealth: function(a, b) {
-    health -= 1;
-    healthText.text = health;
+    game.global.health -= 1;
+    healthText.text = game.global.health;
   },
 
-<<<<<<< HEAD
   resetPencil: function(pencil) {
     pencil.kill();
   },
@@ -239,18 +235,15 @@ var levelState = {
 
     if (pencil) {
       pencil.reset(ed.x, ed.y -20);
-      pencil.body.velocity.y = -500;
+      pencil.body.velocity.y = 500;
     }
   },
   firePencilDown: function() {
-=======
-  resetPencil: function() {
->>>>>>> f2f13d50aa50a6d9ce545076db9ba9224afc78f7
     var pencil = pencils.getFirstExists(false);
 
     if (pencil) {
       pencil.reset(ed.x, ed.y - 20);
-      pencil.body.velocity.x = -500
+      pencil.body.velocity.y = 500
     }
   },
 
@@ -258,8 +251,8 @@ var levelState = {
     var pencil = pencils.getFirstExists(false);
 
     if (pencil) {
-      pencil.reset(ed.x, ed.y -62);
-      pencil.body.velocity.y = -500;
+      pencil.reset(ed.x, ed.y -20);
+      pencil.body.velocity.x = -500;
     }
   },
 
@@ -267,8 +260,8 @@ var levelState = {
     var pencil = pencils.getFirstExists(false);
 
     if (pencil) {
-      pencil.reset(ed.x, ed.y -10);
-      pencil.body.velocity.y = 500;
+      pencil.reset(ed.x, ed.y -20);
+      pencil.body.velocity.x = 500;
     }
   }
 

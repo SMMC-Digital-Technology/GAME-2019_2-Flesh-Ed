@@ -7,6 +7,7 @@ var gameoverState = {
     //  if(space.isDown) {
     //game.state.start('level');
     space = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
+    game.global.health = 6;
 
     //text
 
