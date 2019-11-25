@@ -80,6 +80,7 @@ var level2State = {
 
   update: function() {
 
+      game.physics.arcade.moveToObject(zombieT, ed, 190)
     if (a.isDown) {
       //  Move to the left
       ed.body.velocity.x = -150;
@@ -275,5 +276,5 @@ var level2State = {
           pencil.body.velocity.x = 500;
         }
       }
-      game.physics.arcade.moveToObject(zombieT, ed, //velocity?)
+
     };
