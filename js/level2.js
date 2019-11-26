@@ -65,17 +65,19 @@ var level2State = {
     pencils.setAll('checkWorldBounds', true);
 
     ed.anchor.setTo(0.5, 1.0);
-    ed.animations.add('left', [5, 6 ], 5, true);
+    ed.animations.add('left', [5, 6], 5, true);
     ed.animations.add('right', [7, 8], 5, true);
     ed.animations.add('up', [3, 4], 5, true);
-    ed.animations.add('down', [1,2], 5, true);
+    ed.animations.add('down', [1, 2], 5, true);
   },
 
 
 
   update: function() {
 
-      game.physics.arcade.moveToObject(zombieT, ed, 190)
+    // enemy move to player
+    game.physics.arcade.moveToObject(zombieT, ed, 190)
+
     if (a.isDown) {
       //  Move to the left
       ed.body.velocity.x = -150;
@@ -96,9 +98,9 @@ var level2State = {
     } else if (s.isDown) {
       ed.body.velocity.y = 150;
       ed.animations.play('down');
-   } else {
-     ed.body.velocity.y = 0;
-   }
+    } else {
+      ed.body.velocity.y = 0;
+    }
 
     game.physics.arcade.collide(ed, door, () => {
       game.state.start('level');
@@ -107,7 +109,7 @@ var level2State = {
 
     game.physics.arcade.collide(zombieT, pencils, this.removeZombieT);
 
-    game.physics.arcade.collide(ed, door2   , () => {
+    game.physics.arcade.collide(ed, door2, () => {
       game.state.start('level3');
     });
 
@@ -144,7 +146,7 @@ var level2State = {
     }
 
     if (cursors.right.isDown) {
-      if(!mouseTouchDown) {
+      if (!mouseTouchDown) {
         this.touchRight();
       }
     } else {
@@ -154,7 +156,7 @@ var level2State = {
     }
 
     if (cursors.left.isDown) {
-      if(!mouseTouchDown) {
+      if (!mouseTouchDown) {
         this.touchLeft();
       }
     } else {
@@ -164,7 +166,7 @@ var level2State = {
     }
 
     if (cursors.down.isDown) {
-      if(!mouseTouchDown) {
+      if (!mouseTouchDown) {
         this.touchBelow();
       }
     } else {
@@ -174,103 +176,103 @@ var level2State = {
     }
     if (zombieT.x < ed.x) {
 
+    }
+  },
+
+  removeZombieT: function(z, p) {
+    zombieT.kill();
+    p.kill();
+  },
+  resetPencil: function(pencil) {
+    pencil.kill();
+  },
+
+  touchDown: function() {
+
+    mouseTouchDown = true;
+    this.firePencil();
+  },
+
+  touchUp: function() {
+
+    mouseTouchDown = false;
+  },
+
+  firePencil: function() {
+
+    var pencil = pencils.getFirstExists(false);
+
+    if (pencil) {
+
+      pencil.reset(ed.x, ed.y - 20);
+
+      pencil.body.velocity.y = -500;
+    }
+    if (!(a.isDown || d.isDown || w.isDown || s.isDown)) {
+      ed.animations.stop();
+      ed.frame = 0;
+    }
+  },
+
+  removeHealth: function(a, b) {
+    game.global.health -= 1;
+    healthText.text = game.global.health;
+  },
+
+
+  resetPencil: function(pencil) {
+    pencil.kill();
+  },
+
+  touchBelow: function() {
+    mouseTouchDown = true;
+    this.firePencilDown();
+  },
+
+  touchUp: function() {
+    mouseTouchDown = false;
+  },
+  touchRight: function() {
+    mouseTouchDown = true;
+    this.firePencilRight();
+  },
+  touchLeft: function() {
+    mouseTouchDown = true;
+    this.firePencilLeft();
+  },
+  firePencilUp: function() {
+    var pencil = pencils.getFirstExists(false);
+
+    if (pencil) {
+      pencil.reset(ed.x, ed.y - 20);
+      pencil.body.velocity.y = 500;
+    }
+  },
+  firePencilDown: function() {
+    var pencil = pencils.getFirstExists(false);
+
+    if (pencil) {
+      pencil.reset(ed.x, ed.y - 20);
+      pencil.body.velocity.y = 500;
+    }
+  },
+
+  firePencilLeft: function() {
+    var pencil = pencils.getFirstExists(false);
+
+    if (pencil) {
+      pencil.reset(ed.x, ed.y - 20);
+      pencil.body.velocity.x = -500;
+    }
+  },
+
+  firePencilRight: function() {
+    var pencil = pencils.getFirstExists(false);
+
+    if (pencil) {
+      pencil.reset(ed.x, ed.y - 20);
+      pencil.body.velocity.x = 500;
+    }
   }
-},
 
-    removeZombieT: function(z, p) {
-      zombieT.kill();
-      p.kill();
-    },
-    resetPencil: function(pencil) {
-      pencil.kill();
-    },
-
-    touchDown: function() {
-
-      mouseTouchDown = true;
-      this.firePencil();
-    },
-
-    touchUp: function() {
-
-      mouseTouchDown = false;
-    },
-
-    firePencil: function() {
-
-      var pencil = pencils.getFirstExists(false);
-
-      if (pencil) {
-
-        pencil.reset(ed.x, ed.y - 20);
-
-        pencil.body.velocity.y = -500;
-      }
-      if (!(a.isDown || d.isDown || w.isDown || s.isDown)) {
-        ed.animations.stop();
-        ed.frame = 0;
-      }
-    },
-
-    removeHealth: function(a, b) {
-      game.global.health -= 1;
-      healthText.text = game.global.health;
-    },
-
-
-      resetPencil: function(pencil) {
-        pencil.kill();
-      },
-
-      touchBelow: function() {
-        mouseTouchDown = true;
-        this.firePencilDown();
-      },
-
-      touchUp: function() {
-        mouseTouchDown = false;
-      },
-      touchRight: function() {
-      mouseTouchDown = true;
-      this.firePencilRight();
-      },
-      touchLeft: function() {
-        mouseTouchDown = true;
-        this.firePencilLeft();
-      },
-      firePencilUp: function() {
-        var pencil = pencils.getFirstExists(false);
-
-        if (pencil) {
-          pencil.reset(ed.x, ed.y -20);
-          pencil.body.velocity.y = 500;
-        }
-      },
-      firePencilDown: function() {
-        var pencil = pencils.getFirstExists(false);
-
-        if (pencil) {
-          pencil.reset(ed.x, ed.y -20);
-          pencil.body.velocity.y = 500;
-        }
-      },
-
-      firePencilLeft: function() {
-        var pencil = pencils.getFirstExists(false);
-
-        if (pencil) {
-          pencil.reset(ed.x, ed.y -20);
-          pencil.body.velocity.x = -500;
-        }
-      },
-
-      firePencilRight: function() {
-        var pencil = pencils.getFirstExists(false);
-
-        if (pencil) {
-          pencil.reset(ed.x, ed.y -20);
-          pencil.body.velocity.x = 500;
-        }
-      }
-
-    };
+};
