@@ -4,7 +4,7 @@ var level3State = {
     game.add.sprite(0, 0, 'room');
     ed = game.add.sprite(120, 336, 'ed');
     door = game.add.sprite(12, 265, 'door');
-    zombieT = game.add.sprite(64, 64, 'zombieT');
+    zombieT = game.add.sprite(500, 64, 'zombieT');
     door2 = game.add.sprite(712, 336, 'door');
 
     // create the lev
@@ -75,6 +75,7 @@ var level3State = {
 
   update: function() {
 
+      game.physics.arcade.moveToObject(zombieT, ed, 190)
     if (a.isDown) {
       //  Move to the left
       ed.body.velocity.x = -150;
@@ -104,7 +105,7 @@ var level3State = {
     });
     game.physics.arcade.collide(ed, zombieT, this.removeHealth);
 
-    game.physics.arcade.collide(pencils, zombieT, this.removeZombieT);
+    game.physics.arcade.collide(zombieT, pencils, this.removeZombieT);
 
     game.physics.arcade.collide(ed, door2   , () => {
       game.state.start('level3');
@@ -176,8 +177,9 @@ var level3State = {
   }
 },
 
-    removeZombieT: function() {
+    removeZombieT: function(z, p) {
       zombieT.kill();
+      p.kill();
     },
     resetPencil: function(pencil) {
       pencil.kill();
@@ -269,4 +271,6 @@ var level3State = {
           pencil.reset(ed.x, ed.y -20);
           pencil.body.velocity.x = 500;
         }
-      }};
+      }
+
+    };
