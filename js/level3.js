@@ -5,7 +5,7 @@ var level3State = {
     ed = game.add.sprite(120, 336, 'ed');
     door = game.add.sprite(12, 265, 'door');
     zombieT = game.add.sprite(64, 64, 'zombieT');
-    door2 = game.add.sprite(712, 336, 'door');
+    door2 = game.add.sprite(717, 265, 'door');
 
     // create the lev
     iwall = game.add.sprite(82, 82, 'iwall')

@@ -3,9 +3,9 @@ var level2State = {
   create: function() {
     game.add.sprite(0, 0, 'room');
     ed = game.add.sprite(120, 336, 'ed');
-    door = game.add.sprite(12, 265, 'door');
+  //door = game.add.sprite(12, 265, 'door');
     zombieT = game.add.sprite(64, 64, 'zombieT');
-    door2 = game.add.sprite(712, 336, 'door');
+    door2 = game.add.sprite(717, 265, 'door');
 
     // create the lev
     iwall = game.add.sprite(82, 82, 'iwall')
@@ -33,7 +33,7 @@ var level2State = {
     // wall.add(iwall4);
 
     game.physics.arcade.enable(ed);
-    game.physics.arcade.enable(door);
+    //game.physics.arcade.enable(door);
     game.physics.arcade.enable(door2);
     game.physics.arcade.enable(iwall);
     game.physics.arcade.enable(iwall2);
@@ -43,7 +43,7 @@ var level2State = {
     game.physics.arcade.enable(zombieT);
     ed.body.collideWorldBounds = true;
 
-    door.body.immovable = true;
+    //door.body.immovable = true;
     door2.body.immovable = true;
     zombieT.body.immovable = true;
     iwall.body.immovable = true;
@@ -76,7 +76,7 @@ var level2State = {
   update: function() {
 
     // enemy move to player
-    game.physics.arcade.moveToObject(zombieT, ed, 190)
+    game.physics.arcade.moveToObject(zombieT, ed, 70)
 
     if (a.isDown) {
       //  Move to the left
@@ -102,9 +102,9 @@ var level2State = {
       ed.body.velocity.y = 0;
     }
 
-    game.physics.arcade.collide(ed, door, () => {
-      game.state.start('level');
-    });
+    //game.physics.arcade.collide(ed, door, () => {
+    //  game.state.start('level');
+    //});
     game.physics.arcade.collide(ed, zombieT, this.removeHealth);
 
     game.physics.arcade.collide(zombieT, pencils, this.removeZombieT);
@@ -123,7 +123,8 @@ var level2State = {
     iwall3.alpha = 0
     iwall4.alpha = 0
 
-    door.alpha = 0
+    //door.alpha = 0
+    door2.alpha = 0
 
     if (game.global.health == 0) {
 

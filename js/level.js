@@ -13,8 +13,8 @@ var levelState = {
   //  },
 
   create: function() {
-    game.add.sprite(0, 0, 'room');
-    ed = game.add.sprite(650, 500, 'ed');
+    game.add.sprite(0, 0, 'room1');
+    ed = game.add.sprite(game.world.centerX, game.world.centerY, 'ed');
     door = game.add.sprite(717, 265, 'door');
     iwall = game.add.sprite(82, 82, 'iwall');
     iwall2 = game.add.sprite(82, 518, 'iwall');

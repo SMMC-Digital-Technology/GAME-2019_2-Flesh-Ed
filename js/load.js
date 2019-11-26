@@ -16,6 +16,7 @@ var loadState = {
     game.load.image('zombieS', 'assets/zombie student.png');
 
     //environment
+    game.load.image('room1', 'assets/room1.png');
     game.load.image('room', 'assets/room.png');
     game.load.image('door', 'assets/dor.png');
     game.load.image('iwall', 'assets/iwall.png');
