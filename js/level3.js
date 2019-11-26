@@ -5,8 +5,8 @@ var level3State = {
     ed = game.add.sprite(120, 336, 'ed');
 
     zombieT = game.add.sprite(64, 64, 'zombieT');
-    zombieS = game.add.sprite(64, 64, 'zombieS');
-    door2 = game.add.sprite(717, 265, 'door');
+    zombieS = game.add.sprite(game.world.centerX, 64, 'zombieS');
+    door3 = game.add.sprite(717, 265, 'door');
 
     // create the lev
     iwall = game.add.sprite(82, 82, 'iwall')
@@ -34,7 +34,7 @@ var level3State = {
     // wall.add(iwall4);
 
     game.physics.arcade.enable(ed);
-    game.physics.arcade.enable(door2);
+    game.physics.arcade.enable(door3);
     game.physics.arcade.enable(iwall);
     game.physics.arcade.enable(iwall2);
     game.physics.arcade.enable(iwall3);
@@ -44,7 +44,7 @@ var level3State = {
 
     ed.body.collideWorldBounds = true;
 
-    door2.body.immovable = true;
+    door3.body.immovable = true;
     zombieT.body.immovable = true;
     zombieS.body.immovable = true;
     iwall.body.immovable = true;
@@ -112,8 +112,8 @@ var level3State = {
 
     game.physics.arcade.collide(ed, zombieS, this.removeZombieS);
 
-    game.physics.arcade.collide(ed, door2, () => {
-      game.state.start('level3');
+    game.physics.arcade.collide(ed, door3, () => {
+      game.state.start('level4');
     });
 
     game.physics.arcade.collide(ed, iwall);
@@ -136,7 +136,7 @@ var level3State = {
     iwall3.alpha = 0
     iwall4.alpha = 0
 
-    door2.alpha = 0
+    door3.alpha = 0
 
     if (game.global.health == 0) {
 
@@ -192,15 +192,17 @@ var level3State = {
     }
   },
 
-  removeZombieT: function() {
+  removeZombieT: function(z, p) {
     zombieT.kill();
+    p.kill();
   },
   resetPencil: function(pencil) {
     pencil.kill();
   },
 
-  removeZombieS: function() {
-      zombieS.kill();
+  removeZombieS: function(z, p) {
+    zombieS.kill();
+    p.kill();
   },
 
   touchDown: function() {

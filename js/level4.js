@@ -1,39 +1,31 @@
-/**
- * A single level of the game.
- * You will need multiple copies of this for each level you
- * want to include.
- * Make sure they have different file names and different state names.
- * level2State etc will work fine
- */
-var levelState = {
-
-  //render: function() {
-  //  game.debug.body(ed);
-  //  game.debug.body(door);
-  //  },
+var level4State = {
 
   create: function() {
-    game.add.sprite(0, 0, 'room1');
-    ed = game.add.sprite(game.world.centerX, game.world.centerY, 'ed');
-    door = game.add.sprite(717, 265, 'door');
-    iwall = game.add.sprite(82, 82, 'iwall');
+    game.add.sprite(0, 0, 'room');
+    ed = game.add.sprite(120, 336, 'ed');
+
+    zombieT = game.add.sprite(64, 64, 'zombieT');
+    zombieS = game.add.sprite(game.world.centerX, 64, 'zombieS');
+    door4 = game.add.sprite(717, 265, 'door');
+
+    // create the lev
+    iwall = game.add.sprite(82, 82, 'iwall')
     iwall2 = game.add.sprite(82, 518, 'iwall');
     iwall3 = game.add.sprite(82, 82, 'iwall');
     iwall4 = game.add.sprite(718, 82, 'iwall');
 
-    // health = game.add.sprite(680, 30, 'health');
+    iwall.width = 636;
+    iwall2.width = 636;
+    iwall3.height = 436;
+    iwall4.height = 436;
+
+    game.global.health;
     healthIcon = game.add.sprite(680, 30, 'health');
     healthIcon.scale.setTo(1.2, 1.2);
     healthText = game.add.text(640, 35, game.global.health, {
       font: '25px Arial',
       fill: '#ffffff'
     });
-
-
-    iwall.width = 636;
-    iwall2.width = 636;
-    iwall3.height = 436;
-    iwall4.height = 436;
 
     //wall = game.add.group();
     //wall.add(iwall);
@@ -42,20 +34,24 @@ var levelState = {
     // wall.add(iwall4);
 
     game.physics.arcade.enable(ed);
-    game.physics.arcade.enable(door);
+    game.physics.arcade.enable(door4);
     game.physics.arcade.enable(iwall);
     game.physics.arcade.enable(iwall2);
     game.physics.arcade.enable(iwall3);
     game.physics.arcade.enable(iwall4);
+    game.physics.arcade.enable(zombieT);
+    game.physics.arcade.enable(zombieS);
 
     ed.body.collideWorldBounds = true;
 
-
-    door.body.immovable = true;
+    door4.body.immovable = true;
+    zombieT.body.immovable = true;
+    zombieS.body.immovable = true;
     iwall.body.immovable = true;
     iwall2.body.immovable = true;
     iwall3.body.immovable = true;
     iwall4.body.immovable = true;
+
 
     pencils = game.add.group();
 
@@ -69,17 +65,20 @@ var levelState = {
     pencils.callAll('anchor.setTo', 'anchor', 0.5, 1.0);
     pencils.setAll('checkWorldBounds', true);
 
+    ed.anchor.setTo(0.5, 1.0);
     ed.animations.add('left', [5, 6], 5, true);
     ed.animations.add('right', [7, 8], 5, true);
     ed.animations.add('up', [3, 4], 5, true);
     ed.animations.add('down', [1, 2], 5, true);
-
-    ed.anchor.setTo(0.5, 1.0);
   },
+
+
 
   update: function() {
 
-    // do things on the game loop
+    game.physics.arcade.moveToObject(zombieT, ed, 70)
+    game.physics.arcade.moveToObject(zombieS, ed, 70)
+
     if (a.isDown) {
       //  Move to the left
       ed.body.velocity.x = -150;
@@ -104,34 +103,52 @@ var levelState = {
       ed.body.velocity.y = 0;
     }
 
-    if (!(a.isDown || d.isDown || w.isDown || s.isDown)) {
-      ed.animations.stop();
-      ed.frame = 1;
-    }
 
-    game.physics.arcade.collide(ed, door, () => {
-      game.state.start('level2');
-    });
     game.physics.arcade.collide(ed, zombieT, this.removeHealth);
+
+    game.physics.arcade.collide(pencils, zombieT, this.removeZombieT);
+
+    game.physics.arcade.collide(ed, zombieS, this.removeHealth);
+
+    game.physics.arcade.collide(ed, zombieS, this.removeZombieS);
+
+    game.physics.arcade.collide(ed, door4, () => {
+      game.state.start('level5');
+    });
 
     game.physics.arcade.collide(ed, iwall);
     game.physics.arcade.collide(ed, iwall2);
     game.physics.arcade.collide(ed, iwall3);
     game.physics.arcade.collide(ed, iwall4);
 
+    game.physics.arcade.collide(zombieT, iwall);
+    game.physics.arcade.collide(zombieT, iwall2);
+    game.physics.arcade.collide(zombieT, iwall3);
+    game.physics.arcade.collide(zombieT, iwall4);
+
+    game.physics.arcade.collide(zombieS, iwall);
+    game.physics.arcade.collide(zombieS, iwall2);
+    game.physics.arcade.collide(zombieS, iwall3);
+    game.physics.arcade.collide(zombieS, iwall4);
+
     iwall.alpha = 0
     iwall2.alpha = 0
     iwall3.alpha = 0
     iwall4.alpha = 0
 
-    door.alpha = 0
+    door3.alpha = 0
+
+    if (game.global.health == 0) {
+
+      game.state.start('gameover');
+    }
 
     // how to ( ͡° ͜ʖ ͡°) ▄︻ ̿┻̿═━一
 
     //up fire
-    // Game.input.activePointer is either the first finger touched, or the mouse
+
     if (cursors.up.isDown) {
-      // We'll manually keep track if the pointer wasn't already down
+
       if (!mouseTouchDown) {
         this.touchDown();
       }
@@ -170,45 +187,61 @@ var levelState = {
         this.touchUp();
       }
     }
+    if (zombieT.x < ed.x) {
+
+    }
   },
 
-  removeHealth: function(a, b) {
-    game.global.health -= 1;
-    healthText.text = game.global.health;
-  },
+  removeZombieT: function(z, p) {
+    zombieT.kill();
+    p.kill();
 
+  removeZombieS: fuction(z, p) {
+    zombieS.kill();
+    p.kill();
+  }
+  },
   resetPencil: function(pencil) {
     pencil.kill();
   },
 
+//  removeZombieS: function(z, p) {
+//    zombieS.kill();
+//    p.kill();
+//  },
+
   touchDown: function() {
-    // Set touchDown to true, so we only trigger this once
+
     mouseTouchDown = true;
     this.firePencil();
   },
 
   touchUp: function() {
-    // Set touchDown to false, so we can trigger touchDown on the next click
+
     mouseTouchDown = false;
   },
 
   firePencil: function() {
-    // Get the first laser that's inactive, by passing 'false' as a parameter
+
     var pencil = pencils.getFirstExists(false);
 
     if (pencil) {
-      // If we have a laser, set it to the starting position
+
       pencil.reset(ed.x, ed.y - 20);
-      // Give it a velocity of -500 so it starts shooting
+
       pencil.body.velocity.y = -500;
     }
-    //right fire
-
+    if (!(a.isDown || d.isDown || w.isDown || s.isDown)) {
+      ed.animations.stop();
+      ed.frame = 0;
+    }
   },
+
   removeHealth: function(a, b) {
     game.global.health -= 1;
     healthText.text = game.global.health;
   },
+
 
   resetPencil: function(pencil) {
     pencil.kill();
@@ -243,7 +276,7 @@ var levelState = {
 
     if (pencil) {
       pencil.reset(ed.x, ed.y - 20);
-      pencil.body.velocity.y = 500
+      pencil.body.velocity.y = 500;
     }
   },
 
@@ -264,10 +297,4 @@ var levelState = {
       pencil.body.velocity.x = 500;
     }
   }
-
 };
-// this is how you write a function
-// note the comma after the } above
-// see that variables go in the brackets still
-// to use this function in collision detection, write this.exampleFunction
-// to call it manually, write this.exampleFunction(1, 2)

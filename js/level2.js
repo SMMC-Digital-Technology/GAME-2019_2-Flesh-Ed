@@ -3,7 +3,7 @@ var level2State = {
   create: function() {
     game.add.sprite(0, 0, 'room');
     ed = game.add.sprite(120, 336, 'ed');
-  //door = game.add.sprite(12, 265, 'door');
+    //door = game.add.sprite(12, 265, 'door');
     zombieT = game.add.sprite(64, 64, 'zombieT');
     door2 = game.add.sprite(717, 265, 'door');
 
