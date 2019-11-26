@@ -110,7 +110,7 @@ var level3State = {
 
     game.physics.arcade.collide(ed, zombieS, this.removeHealth);
 
-    game.physics.arcade.collide(ed, zombieS, this.removeZombieS);
+    game.physics.arcade.collide(pencils, zombieS, this.removeZombieS);
 
     game.physics.arcade.collide(ed, door3, () => {
       game.state.start('level4');
@@ -193,7 +193,10 @@ var level3State = {
 
     }
   },
-
+  removeZombieS: function(z, p) {
+    zombieS.kill();
+    p.kill();
+  },
   removeZombieT: function(z, p) {
     zombieT.kill();
     p.kill();
@@ -237,7 +240,6 @@ var level3State = {
     game.global.health -= 1;
     healthText.text = game.global.health;
   },
-
 
   resetPencil: function(pencil) {
     pencil.kill();
