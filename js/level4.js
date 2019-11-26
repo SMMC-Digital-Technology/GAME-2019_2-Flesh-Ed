@@ -110,7 +110,7 @@ var level4State = {
 
     game.physics.arcade.collide(ed, zombieS, this.removeHealth);
 
-    game.physics.arcade.collide(ed, zombieS, this.removeZombieS);
+    game.physics.arcade.collide(pencils, zombieS, this.removeZombieS);
 
     game.physics.arcade.collide(ed, door4, () => {
       game.state.start('level5');
@@ -136,7 +136,7 @@ var level4State = {
     iwall3.alpha = 0
     iwall4.alpha = 0
 
-    door3.alpha = 0
+    door4.alpha = 0
 
     if (game.global.health == 0) {
 
@@ -188,7 +188,9 @@ var level4State = {
       }
     }
     if (zombieT.x < ed.x) {
-
+    }
+    if (zombieS.x < ed.x) {
+      
     }
   },
 
@@ -196,19 +198,16 @@ var level4State = {
     zombieT.kill();
     p.kill();
 
-  removeZombieS: fuction(z, p) {
-    zombieS.kill();
-    p.kill();
-  }
   },
+
+  removeZombieS: function(z, p) {
+    zombieT.kill();
+    p.kill();
+  },
+
   resetPencil: function(pencil) {
     pencil.kill();
   },
-
-//  removeZombieS: function(z, p) {
-//    zombieS.kill();
-//    p.kill();
-//  },
 
   touchDown: function() {
 

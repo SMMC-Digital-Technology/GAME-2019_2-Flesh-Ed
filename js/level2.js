@@ -33,7 +33,6 @@ var level2State = {
     // wall.add(iwall4);
 
     game.physics.arcade.enable(ed);
-    //game.physics.arcade.enable(door);
     game.physics.arcade.enable(door2);
     game.physics.arcade.enable(iwall);
     game.physics.arcade.enable(iwall2);
