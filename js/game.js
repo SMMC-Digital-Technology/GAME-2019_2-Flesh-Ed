@@ -23,6 +23,7 @@ game.state.add('level', levelState);
 game.state.add('gameover', gameoverState);
 game.state.add('level2', level2State);
 game.state.add('level3', level3State);
+game.state.add('level4', level4State);
 
 game.global = {
   // set variables that travel between the states here

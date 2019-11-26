@@ -188,6 +188,8 @@ var level3State = {
       }
     }
     if (zombieT.x < ed.x) {
+    }
+    if (zombieS.x < ed.x) {
 
     }
   },
@@ -196,13 +198,12 @@ var level3State = {
     zombieT.kill();
     p.kill();
   },
-  resetPencil: function(pencil) {
-    pencil.kill();
-  },
-
   removeZombieS: function(z, p) {
     zombieS.kill();
     p.kill();
+  },
+  resetPencil: function(pencil) {
+    pencil.kill();
   },
 
   touchDown: function() {
