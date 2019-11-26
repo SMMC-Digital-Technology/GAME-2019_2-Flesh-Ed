@@ -118,6 +118,11 @@ var level2State = {
     game.physics.arcade.collide(ed, iwall3);
     game.physics.arcade.collide(ed, iwall4);
 
+    game.physics.arcade.collide(zombieT, iwall2);
+    game.physics.arcade.collide(zombieT, iwall3);
+    game.physics.arcade.collide(zombieT, iwall4);
+    game.physics.arcade.collide(zombieT, iwall);
+
     iwall.alpha = 0
     iwall2.alpha = 0
     iwall3.alpha = 0
