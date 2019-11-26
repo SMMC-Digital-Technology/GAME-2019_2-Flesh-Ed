@@ -10,7 +10,7 @@ var zprincipal;
 var cursors;
 var door;
 var zombieT;
-var health = 6;
+var health = 10;
 var healthIcons;
 var pencils;
 var mouseTouchDown = false;
@@ -24,6 +24,10 @@ game.state.add('gameover', gameoverState);
 game.state.add('level2', level2State);
 game.state.add('level3', level3State);
 game.state.add('level4', level4State);
+game.state.add('level5', level5State);
+game.state.add('level6', level6State);
+game.state.add('level7', level7State);
+game.state.add('level8', level8State);
 
 game.global = {
   // set variables that travel between the states here

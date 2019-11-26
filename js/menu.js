@@ -9,7 +9,7 @@ var menuState = {
     //game.state.start('level');
     space = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
 
-    game.add.sprite(0, 0, 'qwerty');
+    game.add.sprite(0, 0, 'cover');
 
     //text
     title = game.add.text(game.world.centerX, game.world.centerY - 100, 'Flesh Ed', {

@@ -1,14 +1,8 @@
-/**
- * A "game over" screen for the end of the game
- */
-var gameoverState = {
+var level8State = {
   create: function() {
 
-    game.add.sprite(0,0, 'dead');
+    game.add.sprite(0,0, 'win');
 
-    //game.add.sprite(0,0, 'blue');
-    //  if(space.isDown) {
-    //game.state.start('level');
     space = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
     game.global.health = 10;
 
@@ -25,11 +19,11 @@ var gameoverState = {
       font: '25px Arial',
       fill: '#ffffff'
     });
-    helpText = 'damn you died\n \n \n';
-    helpText += 'get gud and dont lose';
+    helpText = 'You escaped the school\n \n \n';
+    helpText += 'Good game and thanks for playing';
     help.text = helpText;
 
-    instructions = game.add.text(80, game.world.height - 80, 'press space to try again lol', {
+    instructions = game.add.text(80, game.world.height - 80, 'Hit space if you wanna play again', {
       font: '25px Arial',
       fill: '#ffffff'
     });

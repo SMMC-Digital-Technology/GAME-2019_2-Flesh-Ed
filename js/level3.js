@@ -4,8 +4,8 @@ var level3State = {
     game.add.sprite(0, 0, 'room');
     ed = game.add.sprite(120, 336, 'ed');
 
-    zombieT = game.add.sprite(64, 64, 'zombieT');
-    zombieS = game.add.sprite(game.world.centerX, 64, 'zombieS');
+    zombieT = game.add.sprite(600, 200, 'zombieT');
+    zombieS = game.add.sprite(500, game.world.centerY, 'zombieS');
     door3 = game.add.sprite(717, 265, 'door');
 
     // create the lev
@@ -65,6 +65,9 @@ var level3State = {
     pencils.callAll('anchor.setTo', 'anchor', 0.5, 1.0);
     pencils.setAll('checkWorldBounds', true);
 
+    zombieT.anchor.setTo(0.5, 0.5);
+    zombieS.anchor.setTo(0.5, 0.5);
+
     ed.anchor.setTo(0.5, 1.0);
     ed.animations.add('left', [5, 6], 5, true);
     ed.animations.add('right', [7, 8], 5, true);
@@ -103,6 +106,7 @@ var level3State = {
       ed.body.velocity.y = 0;
     }
 
+    game.physics.arcade.collide(zombieT, zombieS);
 
     game.physics.arcade.collide(ed, zombieT, this.removeHealth);
 
@@ -187,8 +191,7 @@ var level3State = {
         this.touchUp();
       }
     }
-    if (zombieT.x < ed.x) {
-    }
+    if (zombieT.x < ed.x) {}
     if (zombieS.x < ed.x) {
 
     }

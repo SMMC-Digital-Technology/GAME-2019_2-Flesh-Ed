@@ -4,8 +4,9 @@ var level4State = {
     game.add.sprite(0, 0, 'room');
     ed = game.add.sprite(120, 336, 'ed');
 
-    zombieT = game.add.sprite(64, 64, 'zombieT');
-    zombieS = game.add.sprite(game.world.centerX, 64, 'zombieS');
+    zombieT = game.add.sprite(600, 400, 'zombieT');
+    zombieS = game.add.sprite(400, 360, 'zombieS');
+    zombieTT = game.add.sprite(game.world.centerX, game.world.centerY, 'zombieT');
     door4 = game.add.sprite(717, 265, 'door');
 
     // create the lev
@@ -41,12 +42,14 @@ var level4State = {
     game.physics.arcade.enable(iwall4);
     game.physics.arcade.enable(zombieT);
     game.physics.arcade.enable(zombieS);
+    game.physics.arcade.enable(zombieTT);
 
     ed.body.collideWorldBounds = true;
 
     door4.body.immovable = true;
     zombieT.body.immovable = true;
     zombieS.body.immovable = true;
+    zombieTT.body.immovable = true;
     iwall.body.immovable = true;
     iwall2.body.immovable = true;
     iwall3.body.immovable = true;
@@ -65,6 +68,10 @@ var level4State = {
     pencils.callAll('anchor.setTo', 'anchor', 0.5, 1.0);
     pencils.setAll('checkWorldBounds', true);
 
+    zombieT.anchor.setTo(0.5, 0.5);
+    zombieS.anchor.setTo(0.5, 0.5);
+    zombieTT.anchor.setTo(0.5, 0.5);
+
     ed.anchor.setTo(0.5, 1.0);
     ed.animations.add('left', [5, 6], 5, true);
     ed.animations.add('right', [7, 8], 5, true);
@@ -78,6 +85,7 @@ var level4State = {
 
     game.physics.arcade.moveToObject(zombieT, ed, 70)
     game.physics.arcade.moveToObject(zombieS, ed, 70)
+    game.physics.arcade.moveToObject(zombieTT, ed, 70)
 
     if (a.isDown) {
       //  Move to the left
@@ -103,14 +111,16 @@ var level4State = {
       ed.body.velocity.y = 0;
     }
 
-
     game.physics.arcade.collide(ed, zombieT, this.removeHealth);
-
     game.physics.arcade.collide(pencils, zombieT, this.removeZombieT);
 
     game.physics.arcade.collide(ed, zombieS, this.removeHealth);
-
     game.physics.arcade.collide(pencils, zombieS, this.removeZombieS);
+
+    game.physics.arcade.collide(ed, zombieTT, this.removeHealth);
+    game.physics.arcade.collide(pencils, zombieTT, this.removeZombieTT)
+
+
 
     game.physics.arcade.collide(ed, door4, () => {
       game.state.start('level5');
@@ -130,6 +140,11 @@ var level4State = {
     game.physics.arcade.collide(zombieS, iwall2);
     game.physics.arcade.collide(zombieS, iwall3);
     game.physics.arcade.collide(zombieS, iwall4);
+
+    game.physics.arcade.collide(zombieTT, iwall);
+    game.physics.arcade.collide(zombieTT, iwall2);
+    game.physics.arcade.collide(zombieTT, iwall3);
+    game.physics.arcade.collide(zombieTT, iwall4);
 
     iwall.alpha = 0
     iwall2.alpha = 0
@@ -188,23 +203,23 @@ var level4State = {
       }
     }
     if (zombieT.x < ed.x) {
-    }
-    if (zombieS.x < ed.x) {
-      
-    }
-  },
 
+    }
+    if (zombieS.x < ed.x) {}
+    if (zombieTT.x < ed.x) {}
+  },
+  removeZombieS: function(z, p) {
+    zombieS.kill();
+    p.kill();
+  },
   removeZombieT: function(z, p) {
     zombieT.kill();
     p.kill();
-
   },
-
-  removeZombieS: function(z, p) {
-    zombieT.kill();
+  removeZombieTT: function(z, p) {
+    zombieTT.kill();
     p.kill();
   },
-
   resetPencil: function(pencil) {
     pencil.kill();
   },
@@ -240,7 +255,6 @@ var level4State = {
     game.global.health -= 1;
     healthText.text = game.global.health;
   },
-
 
   resetPencil: function(pencil) {
     pencil.kill();
