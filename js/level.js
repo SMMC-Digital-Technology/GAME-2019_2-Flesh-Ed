@@ -24,7 +24,7 @@ var levelState = {
     // health = game.add.sprite(680, 30, 'health');
     healthIcon = game.add.sprite(680, 30, 'health');
     healthIcon.scale.setTo(1.2, 1.2);
-    healthText = game.add.text(650, 30, game.global.health, {
+    healthText = game.add.text(640, 35, game.global.health, {
       font: '25px Arial',
       fill: '#ffffff'
     });

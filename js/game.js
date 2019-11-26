@@ -29,7 +29,7 @@ game.global = {
   // eg score = 0;
   // access using game.global
   // eg game.gloabl.score
-  health: 6
+  health: 10
 };
 
 game.state.start('boot');
