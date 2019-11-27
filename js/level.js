@@ -13,8 +13,8 @@ var levelState = {
   //  },
 
   create: function() {
-    game.add.sprite(0, 0, 'room');
-    ed = game.add.sprite(650, 500, 'ed');
+    game.add.sprite(0, 0, 'room1');
+    ed = game.add.sprite(game.world.centerX, game.world.centerY, 'ed');
     door = game.add.sprite(717, 265, 'door');
     iwall = game.add.sprite(82, 82, 'iwall');
     iwall2 = game.add.sprite(82, 518, 'iwall');
@@ -24,7 +24,7 @@ var levelState = {
     // health = game.add.sprite(680, 30, 'health');
     healthIcon = game.add.sprite(680, 30, 'health');
     healthIcon.scale.setTo(1.2, 1.2);
-    healthText = game.add.text(650, 30, game.global.health, {
+    healthText = game.add.text(640, 35, game.global.health, {
       font: '25px Arial',
       fill: '#ffffff'
     });
@@ -69,10 +69,10 @@ var levelState = {
     pencils.callAll('anchor.setTo', 'anchor', 0.5, 1.0);
     pencils.setAll('checkWorldBounds', true);
 
-    ed.animations.add('left', [5, 6 ], 5, true);
+    ed.animations.add('left', [5, 6], 5, true);
     ed.animations.add('right', [7, 8], 5, true);
     ed.animations.add('up', [3, 4], 5, true);
-    ed.animations.add('down', [1,2], 5, true);
+    ed.animations.add('down', [1, 2], 5, true);
 
     ed.anchor.setTo(0.5, 1.0);
   },
@@ -100,14 +100,14 @@ var levelState = {
     } else if (s.isDown) {
       ed.body.velocity.y = 150;
       ed.animations.play('down');
-   } else {
-     ed.body.velocity.y = 0;
-   }
+    } else {
+      ed.body.velocity.y = 0;
+    }
 
-   if (!(a.isDown || d.isDown || w.isDown || s.isDown)) {
-     ed.animations.stop();
-     ed.frame = 1;
-   }
+    if (!(a.isDown || d.isDown || w.isDown || s.isDown)) {
+      ed.animations.stop();
+      ed.frame = 1;
+    }
 
     game.physics.arcade.collide(ed, door, () => {
       game.state.start('level2');
@@ -142,7 +142,7 @@ var levelState = {
     }
 
     if (cursors.right.isDown) {
-      if(!mouseTouchDown) {
+      if (!mouseTouchDown) {
         this.touchRight();
       }
     } else {
@@ -152,7 +152,7 @@ var levelState = {
     }
 
     if (cursors.left.isDown) {
-      if(!mouseTouchDown) {
+      if (!mouseTouchDown) {
         this.touchLeft();
       }
     } else {
@@ -162,7 +162,7 @@ var levelState = {
     }
 
     if (cursors.down.isDown) {
-      if(!mouseTouchDown) {
+      if (!mouseTouchDown) {
         this.touchBelow();
       }
     } else {
@@ -202,9 +202,9 @@ var levelState = {
       // Give it a velocity of -500 so it starts shooting
       pencil.body.velocity.y = -500;
     }
-  //right fire
+    //right fire
 
-},
+  },
   removeHealth: function(a, b) {
     game.global.health -= 1;
     healthText.text = game.global.health;
@@ -223,8 +223,8 @@ var levelState = {
     mouseTouchDown = false;
   },
   touchRight: function() {
-  mouseTouchDown = true;
-  this.firePencilRight();
+    mouseTouchDown = true;
+    this.firePencilRight();
   },
   touchLeft: function() {
     mouseTouchDown = true;
@@ -234,7 +234,7 @@ var levelState = {
     var pencil = pencils.getFirstExists(false);
 
     if (pencil) {
-      pencil.reset(ed.x, ed.y -20);
+      pencil.reset(ed.x, ed.y - 20);
       pencil.body.velocity.y = 500;
     }
   },
@@ -251,7 +251,7 @@ var levelState = {
     var pencil = pencils.getFirstExists(false);
 
     if (pencil) {
-      pencil.reset(ed.x, ed.y -20);
+      pencil.reset(ed.x, ed.y - 20);
       pencil.body.velocity.x = -500;
     }
   },
@@ -260,7 +260,7 @@ var levelState = {
     var pencil = pencils.getFirstExists(false);
 
     if (pencil) {
-      pencil.reset(ed.x, ed.y -20);
+      pencil.reset(ed.x, ed.y - 20);
       pencil.body.velocity.x = 500;
     }
   }

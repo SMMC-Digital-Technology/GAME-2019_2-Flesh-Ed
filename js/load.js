@@ -16,6 +16,7 @@ var loadState = {
     game.load.image('zombieS', 'assets/zombie student.png');
 
     //environment
+    game.load.image('room1', 'assets/room1.png');
     game.load.image('room', 'assets/room.png');
     game.load.image('door', 'assets/dor.png');
     game.load.image('iwall', 'assets/iwall.png');
@@ -27,8 +28,10 @@ var loadState = {
     game.load.image('pencilD', 'assets/pencilDown.png');
     game.load.image('pencilL', 'assets/pencilLeft.png');
 
-    //anything else that we dont know where to input
-    game.load.image('qwerty', 'assets/menu.png');
+    //wallpapers
+    game.load.image('cover', 'assets/menu.png');
+    game.load.image('win', 'assets/win.png');
+    game.load.image('dead', 'assets/gameover.png');
 
     // loads all assets
   },
