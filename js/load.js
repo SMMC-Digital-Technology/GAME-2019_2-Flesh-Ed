@@ -14,6 +14,9 @@ var loadState = {
     //enemies
     game.load.image('zombieT', 'assets/zombie teacher.png');
     game.load.image('zombieS', 'assets/zombie student.png');
+      //animations
+    //game.load.image('zombieT', 'assets/zombie teacher sprites.png');
+    //game.load.image('zombieS', 'assets/zombie student sprites.png');
 
     //environment
     game.load.image('room1', 'assets/room1.png');

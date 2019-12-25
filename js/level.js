@@ -73,6 +73,7 @@ var levelState = {
     ed.animations.add('right', [7, 8], 5, true);
     ed.animations.add('up', [3, 4], 5, true);
     ed.animations.add('down', [1, 2], 5, true);
+    ed.animations.add('idle', [0], 5, true);
 
     ed.anchor.setTo(0.5, 1.0);
   },

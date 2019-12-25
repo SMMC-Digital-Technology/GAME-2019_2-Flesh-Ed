@@ -63,11 +63,18 @@ var level2State = {
     pencils.callAll('anchor.setTo', 'anchor', 0.5, 1.0);
     pencils.setAll('checkWorldBounds', true);
 
+    //ed animations
     ed.anchor.setTo(0.5, 1.0);
     ed.animations.add('left', [5, 6], 5, true);
     ed.animations.add('right', [7, 8], 5, true);
     ed.animations.add('up', [3, 4], 5, true);
     ed.animations.add('down', [1, 2], 5, true);
+
+    //zombieT animations
+    //zombieT.animations.add('left', [5, 6], 5, true);
+    //zombieT.animations.add('right', [7, 8], 5, true);
+    //zombieT.animations.add('up', [3, 4], 5, true);
+    //zombieT.animations.add('down', [1, 2], 5, true);
   },
 
 
@@ -81,19 +88,17 @@ var level2State = {
       //  Move to the left
       ed.body.velocity.x = -150;
       ed.animations.play('left');
-      //ed.animations.play('left');
     } else if (d.isDown) {
       //  Move to the right
       ed.body.velocity.x = 150;
       ed.animations.play('right');
-      //ed.animations.play('right');
     } else {
       ed.body.velocity.x = 0;
     }
 
     if (w.isDown) {
       ed.body.velocity.y = -150;
-      ed.animations.play('up')
+      ed.animations.play('up');
     } else if (s.isDown) {
       ed.body.velocity.y = 150;
       ed.animations.play('down');
